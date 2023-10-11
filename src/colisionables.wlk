@@ -6,7 +6,7 @@ import configuracion.*
 
 object paredInvisible {
 	
-	var position = game.at(0,0)
+	var position = game.center()
 	
 	method position() = position 
 	
@@ -16,4 +16,6 @@ object paredInvisible {
 		nave_actual.rebotar()
 	}
 }
+
+
 

@@ -4,6 +4,9 @@ import colisionables.*
 
 
 object config_juego {
+
+	var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
+	var lugar = 0
 	
 	method iniciar(){
 		self.configPantalla()
@@ -11,7 +14,6 @@ object config_juego {
 		self.addVisuals()
 		self.limites()
 		game.start()
-		
 	}
 	
 	method addVisuals(){
@@ -25,6 +27,7 @@ object config_juego {
 		game.height(15)
 		game.cellSize(50)	
 		game.boardGround("fondoEspacio.png")
+		//self.avanceFondo()
 		game.title("nombreJuegoxd")
 	}
 	
@@ -34,10 +37,29 @@ object config_juego {
 		keyboard.right().onPressDo({nave_actual.derecha()})
 		keyboard.left().onPressDo({nave_actual.izquierda()})
 	}
-	
 	method limites(){
 		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+	}
+	/* 
+	
+	method avanceFondo(){
+		game.boardGround(fondo.get(lugar))
+	}
+	
+	method imageRotativa(){
+		game.onTick(400,"movimientoFondo",{self.lugarImagen()})
 		
 	}
 	
+	method lugarImagen(){
+		if(lugar == 3){
+				lugar = 0
+			}else{
+				lugar++
+			}
+		}
+	
+	 */
 }
+
+

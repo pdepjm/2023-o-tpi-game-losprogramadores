@@ -15,9 +15,7 @@ object nave_actual {
 		game.onTick(400,"movimientoNave",{self.lugarImagen()})
 		
 	}
-	method darImagen(lugar1){
-		return listaImagenes.get(lugar1)
-	}
+
 	
 	method lugarImagen(){
 		if(lugar == 2){
