@@ -1,9 +1,10 @@
 import wollok.game.*
 import nave.*
 import configuracion.*
+import colisionables.*
 
 program juego {
-	 	
+	
 	config_juego.iniciar()
 	
 }

@@ -1,10 +1,12 @@
 import wollok.game.*
+import colisionables.*
 
 
 object nave_actual {
 	
 	// luego un properyNave
 	//const image = "nave.png"
+	var vida = 3
 	var lugar = 0
 	var position = game.origin()
 	var anterior 
@@ -29,9 +31,15 @@ object nave_actual {
  
  //esto desp se cambia tengamos otras naves
  
-	method hablar(){
-		
-	} 
+ 	method disparar(){
+ 		const bala = new Bala(positionBala = position.right(1).up(3))
+ 		game.addVisual(bala)
+ 		bala.avanzar()
+ 	}
+ 	
+	method restarVida(){
+		vida--
+	}
  
 	method position() = position 
 	method rebotar(){

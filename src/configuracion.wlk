@@ -5,8 +5,8 @@ import colisionables.*
 
 object config_juego {
 
-	var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
-	var lugar = 0
+	//var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
+	//var lugar = 0
 	
 	method iniciar(){
 		self.configPantalla()
@@ -15,17 +15,24 @@ object config_juego {
 		self.limites()
 		game.start()
 	}
+	method limites(){
+		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
+		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+	}
 	
 	method addVisuals(){
+		//(1..10).map{n => ))}	
+		//game.addVisual(new ParedInvisible(position= game.at(0,2)))
+		//game.addVisual(nuevoLimite)
 		game.addVisual(nave_actual)
 		nave_actual.imageRotativa()
-		game.addVisual(paredInvisible)
+		
 	}
 	
 	method configPantalla(){
-		game.width(15)
-		game.height(15)
-		game.cellSize(50)	
+		game.width(20)
+		game.height(20)
+		game.cellSize(30)	
 		game.boardGround("fondoEspacio.png")
 		//self.avanceFondo()
 		game.title("nombreJuegoxd")
@@ -36,9 +43,7 @@ object config_juego {
 		keyboard.down().onPressDo({nave_actual.abajo()})
 		keyboard.right().onPressDo({nave_actual.derecha()})
 		keyboard.left().onPressDo({nave_actual.izquierda()})
-	}
-	method limites(){
-		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+		keyboard.space().onPressDo({nave_actual.disparar()})
 	}
 	/* 
 	
