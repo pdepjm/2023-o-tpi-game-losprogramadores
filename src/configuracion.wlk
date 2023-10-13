@@ -26,6 +26,10 @@ object config_juego {
 		//game.addVisual(nuevoLimite)
 		game.addVisual(nave_actual)
 		nave_actual.imageRotativa()
+		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7))
+		game.addVisual(naveEnemiga1)
+		naveEnemiga1.atacar()
+		
 		
 	}
 	

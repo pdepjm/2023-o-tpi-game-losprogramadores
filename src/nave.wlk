@@ -17,6 +17,8 @@ object nave_actual {
 		game.onTick(400,"movimientoNave",{self.lugarImagen()})
 		
 	}
+	
+	method atacante() = false
 
 	
 	method lugarImagen(){
@@ -34,12 +36,21 @@ object nave_actual {
  	method disparar(){
  		const bala = new Bala(positionBala = position.right(1).up(3))
  		game.addVisual(bala)
- 		bala.avanzar()
+ 		bala.avanzar(self)
+ 		bala.objetivoAlcanzado()
  	}
  	
-	method restarVida(){
-		vida--
+	method recibirDisparo(){
+		vida= vida -1
+		if(vida<=0){
+			self.morir()
+		}
 	}
+	
+	method morir(){
+		game.removeVisual(self)
+	}
+	
  
 	method position() = position 
 	method rebotar(){
