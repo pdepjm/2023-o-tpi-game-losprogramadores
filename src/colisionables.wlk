@@ -78,11 +78,56 @@ class NaveEnemiga{
 	
 	method atacar(){
 		game.onTick(2000,"disparoEnemigo",{self.disparoEnemigo()})
+		//self.seguir()
 	}
 	
 	method seguir(){
-		
+		self.obetenerUbicacionEnX()
+		self.obetenerUbicacionEnY()
 	}
-}
+	
+	
+	method obetenerUbicacionEnX() {
+			game.onTick(400,"avanceEnemigoX",{self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())})
+	} 
+	method obetenerUbicacionEnY() {
+			game.onTick(400,"avanceEnemigoY",{self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())})
+	} 
+	
+	method seguirAvanzandoX(valor){
+		var nuevaPos = valor
+		if(nuevaPos < 0){
+			if(nuevaPos != 0){
+				position = position.left(1)
+				nuevaPos++
+			}
+		}else{
+			if(nuevaPos != 0){
+				position = position.right(1)
+				nuevaPos --
+			}
+	}
+	
+	//corregir repeticion de codigo
+	}
+	
+	method seguirAvanzandoY(valor){
+		var nuevaPos = valor
+		if(nuevaPos < 0){
+			if(nuevaPos != 0){
+				position = position.down(1)
+				nuevaPos++
+			}
+		}else{
+			if(nuevaPos != 0){
+				position = position.up(1)
+				nuevaPos --
+			}
+		}
+	}
+	
+	
+	}
+
 
 

@@ -17,7 +17,7 @@ object config_juego {
 	}
 	method limites(){
 		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
-		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+		//game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
 	}
 	
 	method addVisuals(){
@@ -28,7 +28,7 @@ object config_juego {
 		nave_actual.imageRotativa()
 		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7))
 		game.addVisual(naveEnemiga1)
-		naveEnemiga1.atacar()
+		naveEnemiga1.seguir()
 		
 		
 	}
