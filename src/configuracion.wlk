@@ -9,11 +9,15 @@ object config_juego {
 	//var lugar = 0
 	
 	method iniciar(){
+		
+		
 		self.configPantalla()
-		self.configTeclas()
+		self.configTeclasJuego()
 		self.addVisuals()
 		self.limites()
 		game.start()
+		
+		
 	}
 	method limites(){
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(-1,n)))}		
@@ -43,9 +47,16 @@ object config_juego {
 		game.boardGround("fondoEspacio.png")
 		//self.avanceFondo()
 		game.title("nombreJuegoxd")
+		//fondo.lugarImagen()
+		//game.addVisual(fondo)
 	}
 	
-	method configTeclas(){
+	method configTeclasInicio(){
+		//keyboard.i().onPressDo()//instrucciones
+		//keyboard.n().onPressDo()//eleccion de niveles
+	}
+	
+	method configTeclasJuego(){
 		keyboard.up().onPressDo({nave_actual.arriba()})
 		keyboard.down().onPressDo({nave_actual.abajo()})
 		keyboard.right().onPressDo({nave_actual.derecha()})
@@ -73,5 +84,32 @@ object config_juego {
 	
 	 */
 }
-
+/*
+ 
+object fondo{
+	
+	var lugar
+	
+	var position = game.origin()
+	
+	const listaImagenes = ["0.png","1.png","2.png"]
+	
+	method image() = listaImagenes.get(lugar)
+	
+	
+	method imageRotativa(){
+		game.onTick(400,"movimientoFondo",{self.lugarImagen()})
+		
+	}
+	
+	method lugarImagen(){
+		if(lugar == 2){
+				lugar = 0
+			}else{
+				lugar++
+			}
+		}
+	
+}
+*/
 

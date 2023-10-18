@@ -33,17 +33,10 @@ class Bala{
 	method recibirDisparo(){
 		
 	}
-	/*
-	 
-	method terminarMovimiento(){
-		self.morir()
+	method chocarseConNave(){
+		
 	}
 	
-	method morir(){
-		game.removeVisual(self)
-	
-	}
-	 */
 	
 	method avanzar(disparador){
 		if(disparador.atacante()){
