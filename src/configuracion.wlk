@@ -31,6 +31,7 @@ object config_juego {
 		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7))
 		game.addVisual(naveEnemiga1)
 		//naveEnemiga1.seguir()
+		naveEnemiga1.atacar()
 		
 		
 	}

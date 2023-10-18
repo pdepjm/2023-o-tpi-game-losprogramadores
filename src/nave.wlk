@@ -11,7 +11,7 @@ object nave_actual {
 	var position = game.origin()
 	var anterior 
 	
-	const listaImagenes = ["0.png","1.png","2.png"]
+	//const listaImagenes = ["0.png","1.png","2.png"]
 	
 	method imageRotativa(){
 		game.onTick(400,"movimientoNave",{self.lugarImagen()})

@@ -29,6 +29,10 @@ class Bala{
 	method position() = positionBala
 	
 	method image() = "disparo.png"
+	
+	method recibirDisparo(){
+		
+	}
 	/*
 	 
 	method terminarMovimiento(){
