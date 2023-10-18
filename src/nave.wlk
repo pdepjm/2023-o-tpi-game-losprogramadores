@@ -29,12 +29,12 @@ object nave_actual {
 			}
 		}
 		
-    method image() = listaImagenes.get(lugar)
+    method image() = "nave2.png"//listaImagenes.get(lugar)
  
  //esto desp se cambia tengamos otras naves
  
  	method disparar(){
- 		const bala = new Bala(positionBala = position.right(1.5).up(3))
+ 		const bala = new Bala(positionBala = position.up(1))
  		game.addVisual(bala)
  		bala.avanzar(self)
  		bala.objetivoAlcanzado()

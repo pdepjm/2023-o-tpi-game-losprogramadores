@@ -16,27 +16,29 @@ object config_juego {
 		game.start()
 	}
 	method limites(){
+		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(-1,n)))}		
+		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,-1)))}
+		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,9)))}	
+		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(9,n)))}	
+			
 		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
-		//game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
 	}
 	
-	method addVisuals(){
-		//(1..10).map{n => ))}	
-		//game.addVisual(new ParedInvisible(position= game.at(0,2)))
-		//game.addVisual(nuevoLimite)
+	method addVisuals(){		
 		game.addVisual(nave_actual)
-		nave_actual.imageRotativa()
+		//nave_actual.imageRotativa()
 		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7))
 		game.addVisual(naveEnemiga1)
-		naveEnemiga1.seguir()
+		//naveEnemiga1.seguir()
 		
 		
 	}
 	
 	method configPantalla(){
-		game.width(20)
-		game.height(20)
-		game.cellSize(30)	
+		game.width(9)
+		game.height(9)
+		game.cellSize(120)	
 		game.boardGround("fondoEspacio.png")
 		//self.avanceFondo()
 		game.title("nombreJuegoxd")

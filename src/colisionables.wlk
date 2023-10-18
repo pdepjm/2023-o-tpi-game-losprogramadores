@@ -16,6 +16,11 @@ class ParedInvisible {
 	method chocarseConNave(){
 		nave_actual.rebotar()
 	}
+	
+	method recibirDisparo(){
+		//schedule() para que pare la accion, luego de que el disparo sale de la pared
+		//game.schedule(100, {}) 
+	}
 }
 
 class Bala{
@@ -24,7 +29,17 @@ class Bala{
 	method position() = positionBala
 	
 	method image() = "disparo.png"
+	/*
+	 
+	method terminarMovimiento(){
+		self.morir()
+	}
 	
+	method morir(){
+		game.removeVisual(self)
+	
+	}
+	 */
 	
 	method avanzar(disparador){
 		if(disparador.atacante()){
