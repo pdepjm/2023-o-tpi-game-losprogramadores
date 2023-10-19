@@ -17,6 +17,10 @@ class ParedInvisible {
 		nave_actual.rebotar()
 	}
 	
+	method chocarConEnemigo(){
+		
+	}
+	
 	method recibirDisparo(){
 		//schedule() para que pare la accion, luego de que el disparo sale de la pared
 		//game.schedule(100, {}) 
@@ -24,34 +28,57 @@ class ParedInvisible {
 }
 
 class Bala{
+	const listaImagenes = ["Disparo_UP.png","Disparo_DOWN.png","Disparo_LEFT.png","Disparo_RIGHT.png"]
 	var positionBala
-	
+	var lugar = 0
 	method position() = positionBala
 	
-	method image() = "disparo.png"
+	method position(posicionDeSalida) {
+		positionBala = posicionDeSalida
+	}
+	
+	method image() = listaImagenes.get(lugar)
 	
 	method recibirDisparo(){
 		
 	}
+	
 	method chocarseConNave(){
 		
 	}
-	
 	
 	method avanzar(disparador){
 		if(disparador.atacante()){
 			game.onTick(200,"movimientoBala",{self.moverseHaciaAbajo()})
 		}else{
-			game.onTick(200,"movimientoBala",{self.moverseHaciaArrba()})
+			if(lugar == 0){
+ 				game.onTick(50,"movimientoBala",{self.moverseHaciaArrba()})
+ 			}else if(lugar == 1){
+ 				game.onTick(50,"movimientoBala",{self.moverseHaciaAbajo()})
+ 			}else if (lugar == 2){
+ 				game.onTick(50,"movimientoBala",{self.moverseHaciaIzquierda()})
+ 			}else if(lugar == 3){
+ 				game.onTick(50,"movimientoBala",{self.moverseHaciaDerecha()})
+ 			}
 		}
 		
 	}
 	method moverseHaciaArrba() {
 		 positionBala = positionBala.up(1)
 	}
+	
+	method moverseHaciaIzquierda(){
+		positionBala = positionBala.left(1)
+	}
+	
+	method moverseHaciaDerecha(){
+		positionBala = positionBala.right(1)
+	}
+	
 	method moverseHaciaAbajo(){
 		positionBala = positionBala.down(1)
 	}
+	
 	
 	method objetivoAlcanzado(){
 		game.onCollideDo(self,{chocado => self.chocarseCon(chocado)})
@@ -61,6 +88,18 @@ class Bala{
 		chocado.recibirDisparo()
 	}
 	
+	method imagen_Up(){
+		lugar = 0
+	}
+	method imagen_Down(){
+		lugar = 1
+	}
+	method imagen_Left(){
+		lugar = 2
+	}
+	method imagen_Right(){
+		lugar = 3
+	}
 	
 	
 }
@@ -68,7 +107,8 @@ class Bala{
 
 class NaveEnemiga{
 	
-	var position 
+	var position
+	var anterior
 	
 	method atacante() = true
 	
@@ -76,36 +116,68 @@ class NaveEnemiga{
 	
 	method image() = "naveEnemiga.png"
 	
+	method chocarseConNave(){
+		
+	}
+	
+	method morir(){
+		game.removeVisual(self)
+	}
+	
 	method recibirDisparo(){
-		 game.removeVisual(self)
+		 self.morir()
+		 // razon del error cuando no esta activado el atacar() en configuracion
 		 game.removeTickEvent("disparoEnemigo")
 	}
 	
 	method disparoEnemigo(){
-		const bala = new Bala(positionBala = position.right(1))
+		const bala = new Bala(positionBala = position.down(1))
+		//
  		game.addVisual(bala)
  		bala.avanzar(self)
  		bala.objetivoAlcanzado()
 	}
 	
-	method atacar(){
-		game.onTick(2000,"disparoEnemigo",{self.disparoEnemigo()})
-		//self.seguir()
+	method disparoEnemigoTeledirijido(){
+		const bala = new Bala(positionBala = position.down(1))
+ 		game.addVisual(bala)
+ 		bala.avanzar(self)
+ 		// usar mismo sistema que en el seguir(), pero solo una componente, x o y
+ 		bala.objetivoAlcanzado()
 	}
 	
+	
+	method atacar(){
+		game.onTick(2000,"disparoEnemigo",{self.disparoEnemigo()})
+	}
+	
+	
 	method seguir(){
+		position = anterior
 		self.obetenerUbicacionEnX()
 		self.obetenerUbicacionEnY()
 	}
 	
+	method colisionables(){
+		game.onCollideDo(self,{chocado=>chocado.chocarConEnemigo()})
+	}
+	
+	method chocarConEnemigo(){
+		self.rebotar()
+	}
+	
+	method rebotar(){
+		position = anterior
+	}
+	
 	
 	method obetenerUbicacionEnX() {
-			game.onTick(400,"avanceEnemigoX",{self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())})
+			game.onTick(700,"avanceEnemigoX",{self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())})
 	} 
 	method obetenerUbicacionEnY() {
-			game.onTick(400,"avanceEnemigoY",{self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())})
+			game.onTick(700,"avanceEnemigoY",{self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())})
 	} 
-	
+	//--------------------------------
 	method seguirAvanzandoX(valor){
 		var nuevaPos = valor
 		if(nuevaPos < 0){

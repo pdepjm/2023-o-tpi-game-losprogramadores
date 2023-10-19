@@ -11,15 +11,13 @@ object nave_actual {
 	var position = game.origin()
 	var anterior 
 	
-	//const listaImagenes = ["0.png","1.png","2.png"]
-	
-	method imageRotativa(){
-		game.onTick(400,"movimientoNave",{self.lugarImagen()})
-		
-	}
+	const listaImagenes = ["Nave_UP.png","Nave_DOWN.png","Nave_LEFT.png","Nave_RIGHT.png"]
 	
 	method atacante() = false
-
+	/*
+	method imageRotativa(){
+		game.onTick(400,"movimientoNave",{self.lugarImagen()})
+	}
 	
 	method lugarImagen(){
 		if(lugar == 2){
@@ -27,15 +25,29 @@ object nave_actual {
 			}else{
 				lugar++
 			}
-		}
+	}
+	*/
 		
-    method image() = "nave2.png"//listaImagenes.get(lugar)
- 
- //esto desp se cambia tengamos otras naves
- 
+    method image() = listaImagenes.get(lugar)
+ 	
+ 	//esto desp se cambia tengamos otras naves
+ 	
  	method disparar(){
  		const bala = new Bala(positionBala = position.up(1))
  		game.addVisual(bala)
+ 		if(lugar == 0){
+ 			bala.imagen_Up()
+ 			bala.position(position.up(1))
+ 		}else if(lugar == 1){
+ 			bala.imagen_Down()
+ 			bala.position(position.down(1))
+ 		}else if (lugar == 2){
+ 			bala.imagen_Left()
+ 			bala.position(position.left(1))
+ 		}else if(lugar == 3){
+ 			bala.imagen_Right()
+ 			bala.position(position.right(1))
+ 		}
  		bala.avanzar(self)
  		bala.objetivoAlcanzado()
  	}
@@ -47,32 +59,40 @@ object nave_actual {
 		}
 	}
 	
+	method chocarConEnemigo(){
+		self.morir()
+	}
+	
 	method morir(){
 		game.removeVisual(self)
 	}
 	
  
 	method position() = position 
+	
 	method rebotar(){
 		position = anterior
 	}
 	
-	
 	method arriba() {
 		anterior = position
 		position = position.up(1)
+		lugar = 0
 	}
 	method izquierda() {
 		anterior = position
 		position = position.left(1)
+		lugar = 2
 	}
 	method derecha() {
 		anterior = position
 		position = position.right(1)
+		lugar = 3
 	}
 	method abajo() {
 		anterior = position
 		position = position.down(1)
+		lugar = 1
 	}
 	
 }

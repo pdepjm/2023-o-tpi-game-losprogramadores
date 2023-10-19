@@ -10,31 +10,36 @@ object config_juego {
 	
 	method iniciar(){
 		
-		
 		self.configPantalla()
 		self.configTeclasJuego()
 		self.addVisuals()
 		self.limites()
 		game.start()
-		
-		
 	}
+	
 	method limites(){
+		
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(-1,n)))}		
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,-1)))}
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,9)))}	
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(9,n)))}	
-			
-		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
+		
 		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
+		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
 	}
+	
+
 	
 	method addVisuals(){		
 		game.addVisual(nave_actual)
-		//nave_actual.imageRotativa()
-		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7))
+		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7))
+		const naveEnemiga2 = new NaveEnemiga(position = game.at(6,2), anterior = game.at(9,9))
 		game.addVisual(naveEnemiga1)
-		//naveEnemiga1.seguir()
+		game.addVisual(naveEnemiga2)
+		naveEnemiga2.colisionables()
+		naveEnemiga1.colisionables()
+		//naveEnemiga2.seguir()
+		//nave_actual.imageRotativa()
 		naveEnemiga1.atacar()
 		
 		
@@ -44,9 +49,9 @@ object config_juego {
 		game.width(9)
 		game.height(9)
 		game.cellSize(120)	
-		game.boardGround("fondoEspacio.png")
-		//self.avanceFondo()
+		game.boardGround("F0-0000.jpg")
 		game.title("nombreJuegoxd")
+		//self.avanceFondo()
 		//fondo.lugarImagen()
 		//game.addVisual(fondo)
 	}
@@ -63,8 +68,8 @@ object config_juego {
 		keyboard.left().onPressDo({nave_actual.izquierda()})
 		keyboard.space().onPressDo({nave_actual.disparar()})
 	}
-	/* 
 	
+	/* 
 	method avanceFondo(){
 		game.boardGround(fondo.get(lugar))
 	}
