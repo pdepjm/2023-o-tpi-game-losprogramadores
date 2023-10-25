@@ -7,7 +7,6 @@ object up {
 	}
 	
 	method moverA(objeto){
-		//game.onTick(50,"movimientoBala",{self.moverseHaciaArrba(objeto)})
 		self.moverseHaciaArrba(objeto)
 		
 	}

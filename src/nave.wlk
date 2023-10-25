@@ -10,7 +10,6 @@ object nave_actual {
 	//const image = "nave.png"
 	var vida = 1 // poner contador de vidas en pantalla
 	var imagen = 0
-	
 	var direccion = up
 	var position = game.origin()
 	var anterior 
@@ -36,10 +35,15 @@ object nave_actual {
 		
     method image() = listaImagenes.get(imagen)
  	
+ 	
+ 	
  	//esto desp se cambia tengamos otras naves
+ 	
+
  	
  	method disparar(){
  		const bala = new Bala(positionBala = position)
+ 		bala.posicionDeDisparo(direccion)
  		game.addVisual(bala)
  		bala.avanzar(direccion)
  		

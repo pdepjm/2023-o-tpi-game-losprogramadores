@@ -28,15 +28,30 @@ class ParedInvisible {
 	}
 }
 
+
 class Bala{
 	const listaImagenes = ["Disparo_up.png","Disparo_down.png","Disparo_left.png","Disparo_right.png"]
-	var positionBala
+	var property positionBala
 	var lugar = 0
+	
 	method position() = positionBala
 	
 	method position(posicionDeSalida) {
 		positionBala = posicionDeSalida
 	}
+	
+	method posicionDeDisparo(direccion){
+		if(direccion == up) {
+ 			 self.positionBala(self.position().up(1))
+ 		}else if(direccion == down) {
+ 			self.positionBala(self.position().down(1))
+ 		}else if(direccion == left) {
+ 			self.positionBala(self.position().left(1))
+ 		}else(direccion == right) return {
+ 			self.positionBala(self.position().right(1))
+ 		}
+ 	}
+	
 	
 	method image() = listaImagenes.get(lugar)
 	
@@ -51,9 +66,11 @@ class Bala{
 	method avanzar(direccion){
 		game.onTick(50,"movimientoBala",{direccion.moverA(self)})
 		self.imagenDireccionada(direccion)
+		//self.objetivoAlcanzado()
 	}
 	
 	method imagenDireccionada(direccion){
+		// nose si esta bien con el if o se puede hacer mandando mensajes, entiendo que la responsabilidad es de la misma bala
 		if(nave_actual.direccion() == up){
  			lugar = 0
  		}else if(nave_actual.direccion() == down){
@@ -66,25 +83,6 @@ class Bala{
  		}
 	}
 	
-	/*
-	method avanzar(disparador){
-		if(disparador.atacante()){
-			game.onTick(200,"movimientoBala",{self.moverseHaciaAbajo()})
-		}else{
-			if(lugar == 0){
- 				game.onTick(50,"movimientoBala",{self.moverseHaciaArrba()})
- 			}else if(lugar == 1){
- 				game.onTick(50,"movimientoBala",{self.moverseHaciaAbajo()})
- 			}else if (lugar == 2){
- 				game.onTick(50,"movimientoBala",{self.moverseHaciaIzquierda()})
- 			}else if(lugar == 3){
- 				game.onTick(50,"movimientoBala",{self.moverseHaciaDerecha()})
- 			}
-		}
-		
-	}
-	* 
-	*/
 
 	
 	
