@@ -1,6 +1,7 @@
 import wollok.game.*
 import nave.*
 import configuracion.*
+import direcciones.*
 
 
 
@@ -28,7 +29,7 @@ class ParedInvisible {
 }
 
 class Bala{
-	const listaImagenes = ["Disparo_UP.png","Disparo_DOWN.png","Disparo_LEFT.png","Disparo_RIGHT.png"]
+	const listaImagenes = ["Disparo_up.png","Disparo_down.png","Disparo_left.png","Disparo_right.png"]
 	var positionBala
 	var lugar = 0
 	method position() = positionBala
@@ -47,6 +48,25 @@ class Bala{
 		
 	}
 	
+	method avanzar(direccion){
+		game.onTick(50,"movimientoBala",{direccion.moverA(self)})
+		self.imagenDireccionada(direccion)
+	}
+	
+	method imagenDireccionada(direccion){
+		if(nave_actual.direccion() == up){
+ 			lugar = 0
+ 		}else if(nave_actual.direccion() == down){
+ 			lugar = 1 
+ 		}else if (nave_actual.direccion() == left){
+ 			lugar = 2
+ 		}else if(nave_actual.direccion() == right){
+ 			lugar = 3
+ 
+ 		}
+	}
+	
+	/*
 	method avanzar(disparador){
 		if(disparador.atacante()){
 			game.onTick(200,"movimientoBala",{self.moverseHaciaAbajo()})
@@ -63,21 +83,9 @@ class Bala{
 		}
 		
 	}
-	method moverseHaciaArrba() {
-		 positionBala = positionBala.up(1)
-	}
-	
-	method moverseHaciaIzquierda(){
-		positionBala = positionBala.left(1)
-	}
-	
-	method moverseHaciaDerecha(){
-		positionBala = positionBala.right(1)
-	}
-	
-	method moverseHaciaAbajo(){
-		positionBala = positionBala.down(1)
-	}
+	* 
+	*/
+
 	
 	
 	method objetivoAlcanzado(){
@@ -134,17 +142,25 @@ class NaveEnemiga{
 		const bala = new Bala(positionBala = position.down(1))
 		//
  		game.addVisual(bala)
- 		bala.avanzar(self)
+ 		self.avanzar(bala)
  		bala.objetivoAlcanzado()
 	}
 	
+	//esta bien esto?
+	
+	method avanzar(objeto){
+		game.onTick(50,"movimientoBala",{down.moverA(objeto)})
+	}
+	/* 
 	method disparoEnemigoTeledirijido(){
 		const bala = new Bala(positionBala = position.down(1))
  		game.addVisual(bala)
- 		bala.avanzar(self)
+ 		//bala.avanzar(self)
  		// usar mismo sistema que en el seguir(), pero solo una componente, x o y
  		bala.objetivoAlcanzado()
 	}
+	* 
+	*/
 	
 	
 	method atacar(){
@@ -154,8 +170,7 @@ class NaveEnemiga{
 	
 	method seguir(){
 		position = anterior
-		self.obetenerUbicacionEnX()
-		self.obetenerUbicacionEnY()
+		self.ubicacionGeneral()
 	}
 	
 	method colisionables(){
@@ -170,14 +185,15 @@ class NaveEnemiga{
 		position = anterior
 	}
 	
+	method ubicacionGeneral(){
+		game.onTick(700,"movimientoBala",{self.obetenerUbicacionXY()})
+	}
 	
-	method obetenerUbicacionEnX() {
-			game.onTick(700,"avanceEnemigoX",{self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())})
+	method obetenerUbicacionXY() {
+			self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())
+			self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())
 	} 
-	method obetenerUbicacionEnY() {
-			game.onTick(700,"avanceEnemigoY",{self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())})
-	} 
-	//--------------------------------
+//--------------------------------
 	method seguirAvanzandoX(valor){
 		var nuevaPos = valor
 		if(nuevaPos < 0){
