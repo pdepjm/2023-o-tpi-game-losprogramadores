@@ -61,7 +61,7 @@ object configJuego {
 		naveEnemiga2.colisionables()
 		naveEnemiga1.colisionables()
 		naveEnemiga1.atacar()
-		//naveEnemiga2.seguir()
+		naveEnemiga2.seguir()
 		//naveActual.imageRotativa()
 		
 		
@@ -154,5 +154,15 @@ object flechita{
 	}
 	
 	
+}
+
+object finalPartida{
+	method ganar(){
+		
+	}
+	
+	method perder(){
+		
+	}
 }
 
