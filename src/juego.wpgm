@@ -5,6 +5,6 @@ import colisionables.*
 
 program juego {
 	
-	config_juego.iniciar()
+	configJuego.iniciar()
 	
 }

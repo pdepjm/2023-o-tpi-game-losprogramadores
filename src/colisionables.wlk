@@ -15,16 +15,17 @@ class ParedInvisible {
 	 // cambiar a chocarse con limite, poner un schedule para que luego de un cierto tiempo se haga un deleteVisual(bala)
 	 // poner metodo en bala para que no de error
 	method chocarseConNave(){
-		nave_actual.rebotar()
+		naveActual.rebotar()
 	}
+	
+	
 	
 	method chocarConEnemigo(){
 		
 	}
 	
-	method recibirDisparo(){
-		//schedule() para que pare la accion, luego de que el disparo sale de la pared
-		//game.schedule(100, {}) 
+	method recibirDisparo(objeto){
+		game.removeVisual(objeto)
 	}
 }
 
@@ -40,6 +41,8 @@ class Bala{
 		positionBala = posicionDeSalida
 	}
 	
+	
+	
 	method posicionDeDisparo(direccion){
 		if(direccion == up) {
  			 self.positionBala(self.position().up(1))
@@ -47,7 +50,7 @@ class Bala{
  			self.positionBala(self.position().down(1))
  		}else if(direccion == left) {
  			self.positionBala(self.position().left(1))
- 		}else(direccion == right) return {
+ 		}else if(direccion == right){
  			self.positionBala(self.position().right(1))
  		}
  	}
@@ -55,7 +58,7 @@ class Bala{
 	
 	method image() = listaImagenes.get(lugar)
 	
-	method recibirDisparo(){
+	method recibirDisparo(_){
 		
 	}
 	
@@ -66,18 +69,18 @@ class Bala{
 	method avanzar(direccion){
 		game.onTick(50,"movimientoBala",{direccion.moverA(self)})
 		self.imagenDireccionada(direccion)
-		//self.objetivoAlcanzado()
+		self.objetivoAlcanzado()
 	}
 	
 	method imagenDireccionada(direccion){
 		// nose si esta bien con el if o se puede hacer mandando mensajes, entiendo que la responsabilidad es de la misma bala
-		if(nave_actual.direccion() == up){
+		if(naveActual.direccion() == up){
  			lugar = 0
- 		}else if(nave_actual.direccion() == down){
+ 		}else if(naveActual.direccion() == down){
  			lugar = 1 
- 		}else if (nave_actual.direccion() == left){
+ 		}else if (naveActual.direccion() == left){
  			lugar = 2
- 		}else if(nave_actual.direccion() == right){
+ 		}else if(naveActual.direccion() == right){
  			lugar = 3
  
  		}
@@ -87,26 +90,13 @@ class Bala{
 	
 	
 	method objetivoAlcanzado(){
-		game.onCollideDo(self,{chocado => self.chocarseCon(chocado)})
+		game.onCollideDo(self,{chocado => self.chocarseCon(chocado,self)})
 	}
 	
-	method chocarseCon(chocado){
-		chocado.recibirDisparo()
+	method chocarseCon(chocado,objetivoAModificar){
+		chocado.recibirDisparo(objetivoAModificar)
+		
 	}
-	
-	method imagen_Up(){
-		lugar = 0
-	}
-	method imagen_Down(){
-		lugar = 1
-	}
-	method imagen_Left(){
-		lugar = 2
-	}
-	method imagen_Right(){
-		lugar = 3
-	}
-	
 	
 }
 
@@ -115,8 +105,12 @@ class NaveEnemiga{
 	
 	var position
 	var anterior
+	var id 
+	var property atacante
 	
-	method atacante() = true
+	method id() = id
+	
+	
 	
 	method position() = position 
 	
@@ -130,10 +124,12 @@ class NaveEnemiga{
 		game.removeVisual(self)
 	}
 	
-	method recibirDisparo(){
+	method recibirDisparo(_){
 		 self.morir()
 		 // razon del error cuando no esta activado el atacar() en configuracion
-		 game.removeTickEvent("disparoEnemigo")
+		 if(self.atacante()){
+		 game.removeTickEvent("disparoEnemigo"+self.id())		 	
+		 }
 	}
 	
 	method disparoEnemigo(){
@@ -149,6 +145,7 @@ class NaveEnemiga{
 	method avanzar(objeto){
 		game.onTick(50,"movimientoBala",{down.moverA(objeto)})
 	}
+	
 	/* 
 	method disparoEnemigoTeledirijido(){
 		const bala = new Bala(positionBala = position.down(1))
@@ -157,12 +154,12 @@ class NaveEnemiga{
  		// usar mismo sistema que en el seguir(), pero solo una componente, x o y
  		bala.objetivoAlcanzado()
 	}
-	* 
 	*/
 	
 	
 	method atacar(){
-		game.onTick(2000,"disparoEnemigo",{self.disparoEnemigo()})
+		game.onTick(2000,"disparoEnemigo"+self.id(),{self.disparoEnemigo()})
+		self.atacante(true)
 	}
 	
 	
@@ -188,8 +185,8 @@ class NaveEnemiga{
 	}
 	
 	method obetenerUbicacionXY() {
-			self.seguirAvanzandoX(nave_actual.position().x()-self.position().x())
-			self.seguirAvanzandoY(nave_actual.position().y()-self.position().y())
+			self.seguirAvanzandoX(naveActual.position().x()-self.position().x())
+			self.seguirAvanzandoY(naveActual.position().y()-self.position().y())
 	} 
 //--------------------------------
 	method seguirAvanzandoX(valor){
@@ -206,7 +203,8 @@ class NaveEnemiga{
 			}
 	}
 	
-	//corregir repeticion de codigo
+	//corregir para que funcione con direcciones
+	//////////////////////////////////////////////////////////////////////
 	}
 	
 	method seguirAvanzandoY(valor){

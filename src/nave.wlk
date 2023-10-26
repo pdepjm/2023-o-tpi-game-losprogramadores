@@ -4,7 +4,7 @@ import direcciones.*
 
 
 
-object nave_actual {
+object naveActual {
 	
 	// luego un properyNave
 	//const image = "nave.png"
@@ -34,42 +34,15 @@ object nave_actual {
 	*/
 		
     method image() = listaImagenes.get(imagen)
- 	
- 	
- 	
- 	//esto desp se cambia tengamos otras naves
- 	
 
- 	
  	method disparar(){
  		const bala = new Bala(positionBala = position)
  		bala.posicionDeDisparo(direccion)
  		game.addVisual(bala)
  		bala.avanzar(direccion)
- 		
- 		
- 		// como hacer para 
- 		//direccion.moverA(bala)
-		//bala.moverA(direccion)
- 		/*if(lugar == 0){
- 			bala.imagen_Up()
- 			bala.position(position.up(1))
- 		}else if(lugar == 1){
- 			bala.imagen_Down()
- 			bala.position(position.down(1))
- 		}else if (lugar == 2){
- 			bala.imagen_Left()
- 			bala.position(position.left(1))
- 		}else if(lugar == 3){
- 			bala.imagen_Right()
- 			bala.position(position.right(1))
- 		}
- 		bala.avanzar(self)
- 		bala.objetivoAlcanzado()
- 	*/
  	}
  	
-	method recibirDisparo(){
+	method recibirDisparo(_){
 		vida--
 		if(vida==0){
 			self.morir()
