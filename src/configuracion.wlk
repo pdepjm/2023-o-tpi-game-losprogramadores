@@ -11,9 +11,9 @@ object config_juego {
 	method iniciar(){
 		
 		self.configPantalla()
-		self.configTeclasJuego()
-		self.addVisuals()
-		self.limites()
+		self.comenzarJuego()
+		//self.addVisuals()
+		//self.limites()
 		game.start()
 	}
 	
@@ -26,6 +26,27 @@ object config_juego {
 		
 		game.onCollideDo(nave_actual,{chocado => chocado.chocarseConNave()})
 		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
+	}
+	
+	method comenzarJuego(){
+				
+		
+		game.addVisual(opcion1)
+		game.addVisual(opcion2)
+		game.addVisual(opcion3)
+		game.addVisual(flechita)
+		
+		keyboard.i().onPressDo({flechita.cambiarPosicion()})
+		keyboard.enter().onPressDo({
+			
+			flechita.seleccionarOpcion()
+			game.removeVisual(opcion1)
+			game.removeVisual(opcion2)
+			game.removeVisual(opcion3)
+			game.removeVisual(flechita)
+			
+		})
+		
 	}
 	
 
@@ -89,6 +110,87 @@ object config_juego {
 	
 	 */
 }
+
+
+
+object opcion1{
+	const position= game.at(3,5)
+	method image() = "gameStart.png"
+	method position() = position
+	
+	method accion(){
+		config_juego.addVisuals()
+		config_juego.limites()
+		config_juego.configTeclasJuego()
+	}
+	
+	
+}
+
+object opcion2{
+	const position= game.at(3,4)
+	method image() = "selectLevel.png"
+	method position() = position
+	
+	method accion(){
+		config_juego.addVisuals()
+		config_juego.limites()
+	}
+	
+}
+
+object opcion3{
+	const position= game.at(3,3)
+	method image() = "exit.png"
+	method position() = position
+	
+	method accion(){
+		game.stop()
+	}
+	
+}
+
+object flechita{
+	
+	var position = game.at(opcion1.position().x() - 1, opcion1.position().y())
+	
+	method position() = position
+	
+	method image() = "flechaSeleccionadora.png"
+	
+	method cambiarPosicion(){
+		if(position.y()<=3){
+			position = game.at(position.x(), 5)
+		}else{
+			position = game.at(position.x(), position.y()-1)
+		}
+	}
+	
+	method seleccionarOpcion(){
+		if(position.y()==5){
+			opcion1.accion()
+		}
+		else if(position.y()==4){
+			opcion2.accion()
+		}
+		else{
+			opcion3.accion()
+		}
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
 /*
  
 object fondo{
