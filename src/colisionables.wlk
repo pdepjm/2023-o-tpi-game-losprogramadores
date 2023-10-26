@@ -24,8 +24,8 @@ class ParedInvisible {
 		
 	}
 	
-	method recibirDisparo(objeto){
-		game.removeVisual(objeto)
+	method recibirDisparo(_){
+		
 	}
 }
 
@@ -34,6 +34,10 @@ class Bala{
 	const listaImagenes = ["Disparo_up.png","Disparo_down.png","Disparo_left.png","Disparo_right.png"]
 	var property positionBala
 	var lugar = 0
+	
+	const balaEnemiga = false
+	
+	method balaEnemiga() = balaEnemiga
 	
 	method position() = positionBala
 	
@@ -82,7 +86,6 @@ class Bala{
  			lugar = 2
  		}else if(naveActual.direccion() == right){
  			lugar = 3
- 
  		}
 	}
 	
@@ -94,6 +97,7 @@ class Bala{
 	}
 	
 	method chocarseCon(chocado,objetivoAModificar){
+		game.removeVisual(self)
 		chocado.recibirDisparo(objetivoAModificar)
 		
 	}
@@ -110,8 +114,6 @@ class NaveEnemiga{
 	
 	method id() = id
 	
-	
-	
 	method position() = position 
 	
 	method image() = "naveEnemiga.png"
@@ -124,16 +126,20 @@ class NaveEnemiga{
 		game.removeVisual(self)
 	}
 	
-	method recibirDisparo(_){
-		 self.morir()
-		 // razon del error cuando no esta activado el atacar() en configuracion
-		 if(self.atacante()){
-		 game.removeTickEvent("disparoEnemigo"+self.id())		 	
+	method recibirDisparo(bala){
+		if(not bala.balaEnemiga()){
+			self.morir()
+		 	if(self.atacante()){ // para saber si hacer el removeOnTick o no. El atacante me dice si me esta disaparando
+		 	game.removeTickEvent("disparoEnemigo"+self.id())
 		 }
+		configJuego.sumarMuerte()		
+		finalPartida.controlNivel(configJuego.nivelActual(), configJuego.contadorDeMuertes())
+		}
+		 
 	}
 	
 	method disparoEnemigo(){
-		const bala = new Bala(positionBala = position.down(1))
+		const bala = new Bala(positionBala = position.down(1), balaEnemiga = true)
 		//
  		game.addVisual(bala)
  		self.avanzar(bala)
@@ -203,8 +209,6 @@ class NaveEnemiga{
 			}
 	}
 	
-	//corregir para que funcione con direcciones
-	//////////////////////////////////////////////////////////////////////
 	}
 	
 	method seguirAvanzandoY(valor){
@@ -224,6 +228,8 @@ class NaveEnemiga{
 	
 	
 	}
+	//corregir para que funcione con direcciones
+	//////////////////////////////////////////////////////////////////////
 
 
 

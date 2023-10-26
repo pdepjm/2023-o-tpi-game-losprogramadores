@@ -1,6 +1,7 @@
 import wollok.game.*
 import colisionables.*
 import direcciones.*
+import configuracion.*
 
 
 
@@ -36,7 +37,7 @@ object naveActual {
     method image() = listaImagenes.get(imagen)
 
  	method disparar(){
- 		const bala = new Bala(positionBala = position)
+ 		const bala = new Bala(positionBala = position, balaEnemiga = false)
  		bala.posicionDeDisparo(direccion)
  		game.addVisual(bala)
  		bala.avanzar(direccion)
@@ -46,6 +47,7 @@ object naveActual {
 		vida--
 		if(vida==0){
 			self.morir()
+			finalPartida.perder()
 		}
 	}
 	

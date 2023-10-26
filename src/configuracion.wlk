@@ -1,12 +1,24 @@
 import wollok.game.*
 import nave.*
 import colisionables.*
+import niveles.*
 
 
 object configJuego {
 
 	//var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
 	//var lugar = 0
+	
+	var contadorDeMuertes = 0
+	var property nivelActual
+	
+	
+	method sumarMuerte(){
+		contadorDeMuertes = contadorDeMuertes + 1
+	}
+	
+	method contadorDeMuertes() = contadorDeMuertes
+
 	
 	method iniciar(){
 		
@@ -53,6 +65,7 @@ object configJuego {
 
 	
 	method addVisuals(){		
+		
 		game.addVisual(naveActual)
 		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 0, atacante = false)
 		const naveEnemiga2 = new NaveEnemiga(position = game.at(6,2), anterior = game.at(9,9), id = 1,atacante = false)
@@ -94,9 +107,16 @@ object opcion1{
 	method position() = position
 	
 	method accion(){
-		configJuego.addVisuals()
+		//configJuego.addVisuals() // del propio nivel
+		//configJuego.configTeclasJuego() // del propio nivel
+		/// seria manejandolo del nivel
+		
+		configJuego.nivelActual(nivel1)
+		nivel1.inicarNivel()
 		configJuego.limites()
-		configJuego.configTeclasJuego()
+		
+		
+		
 	}
 	
 	
@@ -156,13 +176,35 @@ object flechita{
 	
 }
 
+
 object finalPartida{
-	method ganar(){
+	
+	method controlNivel(nivel,contadorDeMuertesEnemigas){
+		if(nivel.CantidadEnemigos()==contadorDeMuertesEnemigas){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
+			self.ganar(nivel.puntaje())
+		} 
 		
 	}
 	
+	method ganar(puntaje){
+		game.clear()
+		//ganado.addVisual()
+		//agragar la cant de puntos en pantalla
+	}
+	
 	method perder(){
-		
+		game.clear()
+		//
+		//debe volver al menu
 	}
 }
 
+/* 
+object ganado{
+	
+	method image() = "youWin.png"
+	
+	method position() = game.center()
+}
+
+ */
