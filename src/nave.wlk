@@ -41,13 +41,13 @@ object naveActual {
  		bala.posicionDeDisparo(direccion)
  		game.addVisual(bala)
  		bala.avanzar(direccion)
+ 		//ak desarrollar movimiento lateral
  	}
  	
 	method recibirDisparo(_){
 		vida--
 		if(vida==0){
 			self.morir()
-			finalPartida.perder()
 		}
 	}
 	
@@ -57,6 +57,7 @@ object naveActual {
 	
 	method morir(){
 		game.removeVisual(self)
+		finalPartida.perder()
 	}
 	
  

@@ -76,6 +76,10 @@ class Bala{
 		self.objetivoAlcanzado()
 	}
 	
+	
+	
+	
+	
 	method imagenDireccionada(direccion){
 		// nose si esta bien con el if o se puede hacer mandando mensajes, entiendo que la responsabilidad es de la misma bala
 		if(naveActual.direccion() == up){
@@ -130,8 +134,8 @@ class NaveEnemiga{
 		if(not bala.balaEnemiga()){
 			self.morir()
 		 	if(self.atacante()){ // para saber si hacer el removeOnTick o no. El atacante me dice si me esta disaparando
-		 	game.removeTickEvent("disparoEnemigo"+self.id())
-		 }
+		 		game.removeTickEvent("disparoEnemigo"+self.id())
+			}
 		configJuego.sumarMuerte()		
 		finalPartida.controlNivel(configJuego.nivelActual(), configJuego.contadorDeMuertes())
 		}

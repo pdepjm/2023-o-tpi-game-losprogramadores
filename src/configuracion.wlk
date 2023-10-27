@@ -172,8 +172,7 @@ object flechita{
 			opcion3.accion()
 		}
 	}
-	
-	
+
 }
 
 
