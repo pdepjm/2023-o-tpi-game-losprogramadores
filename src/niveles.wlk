@@ -29,8 +29,8 @@ object nivel1 {
 	
 	method configuracionDeteclas(){
 			
-		//keyboard.up().onPressDo({naveActual.arriba()})
-		//keyboard.down().onPressDo({naveActual.abajo()})
+		keyboard.up().onPressDo({naveActual.arriba()})
+		keyboard.down().onPressDo({naveActual.abajo()})
 		keyboard.right().onPressDo({naveActual.derecha()})
 		keyboard.left().onPressDo({naveActual.izquierda()})
 		keyboard.space().onPressDo({naveActual.disparar()})
