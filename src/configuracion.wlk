@@ -9,8 +9,15 @@ object configJuego {
 	//var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
 	//var lugar = 0
 	
-	var contadorDeMuertes = 0
+	var property contadorDeMuertes = 0
 	var property nivelActual
+	const level1 = new SelectLevel(position=game.at(3,5), image="gameStart.png")
+	const level2 = new SelectLevel(position=game.at(3,4), image="gameStart.png")
+	const level3 = new SelectLevel(position=game.at(3,3), image="gameStart.png")
+	
+	method level1() = level1
+	method level2() = level2
+	method level3() = level3
 	
 	
 	method sumarMuerte(){
@@ -23,7 +30,7 @@ object configJuego {
 	method iniciar(){
 		
 		self.configPantalla()
-		self.comenzarJuego()
+		self.menuGeneral()
 		//self.addVisuals()
 		//self.limites()
 		game.start()
@@ -41,8 +48,7 @@ object configJuego {
 		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
 	}
 	
-	method comenzarJuego(){
-				
+	method menuGeneral(){
 		
 		game.addVisual(opcion1)
 		game.addVisual(opcion2)
@@ -50,19 +56,28 @@ object configJuego {
 		game.addVisual(flechita)
 		
 		keyboard.i().onPressDo({flechita.cambiarPosicion()})
-		keyboard.enter().onPressDo({
-			
-			flechita.seleccionarOpcion()
-			game.removeVisual(opcion1)
-			game.removeVisual(opcion2)
-			game.removeVisual(opcion3)
-			game.removeVisual(flechita)
-			
-		})
+		keyboard.c().onPressDo({flechita.seleccionarOpcionMenu()})
 		
 	}
 	
-
+	method menuDeNiveles(){
+		
+			game.removeVisual(opcion1)
+			game.removeVisual(opcion2)
+			game.removeVisual(opcion3)
+			game.addVisual(self.level1())
+			game.addVisual(self.level2())
+			game.addVisual(self.level3())
+			
+			keyboard.enter().onPressDo({
+				flechita.seleccionarOpcionNivel()
+				game.removeVisual(self.level1())
+				game.removeVisual(self.level2())
+				game.removeVisual(self.level3())
+				game.removeVisual(flechita)
+			})
+		
+	}
 	
 	method addVisuals(){		
 		
@@ -111,12 +126,13 @@ object opcion1{
 		//configJuego.configTeclasJuego() // del propio nivel
 		/// seria manejandolo del nivel
 		
+		game.removeVisual(self)
+		game.removeVisual(opcion2)
+		game.removeVisual(opcion3)
+		game.removeVisual(flechita)
 		configJuego.nivelActual(nivel1)
 		nivel1.inicarNivel()
 		configJuego.limites()
-		
-		
-		
 	}
 	
 	
@@ -124,12 +140,13 @@ object opcion1{
 
 object opcion2{
 	const position= game.at(3,4)
+	
+	
 	method image() = "selectLevel.png"
 	method position() = position
 	
 	method accion(){
-		configJuego.addVisuals()
-		configJuego.limites()
+		configJuego.menuDeNiveles()
 	}
 	
 }
@@ -145,9 +162,28 @@ object opcion3{
 	
 }
 
+class SelectLevel{
+	
+	var property position 
+	var property image 
+	
+	method position() = position
+	method image()= image
+	
+	
+	method accion(nivel){
+		configJuego.nivelActual(nivel)
+		nivel.inicarNivel()
+		configJuego.limites()
+	}
+	
+	
+}
+
+
 object flechita{
 	
-	var position = game.at(opcion1.position().x() - 1, opcion1.position().y())
+	var position = game.at(2, 5)
 	
 	method position() = position
 	
@@ -161,17 +197,31 @@ object flechita{
 		}
 	}
 	
-	method seleccionarOpcion(){
+	method seleccionarOpcionMenu(){
 		if(position.y()==5){
 			opcion1.accion()
 		}
 		else if(position.y()==4){
+			//position = game.at(3,5)
 			opcion2.accion()
 		}
 		else{
 			opcion3.accion()
 		}
 	}
+	
+	method seleccionarOpcionNivel(){
+		if(position.y()==5){
+			configJuego.level1().accion(nivel1)
+		}
+		else if(position.y()==4){
+			game.stop()
+		}
+		else{
+			game.stop()
+		}
+	}
+	
 
 }
 
@@ -180,19 +230,24 @@ object finalPartida{
 	
 	method controlNivel(nivel,contadorDeMuertesEnemigas){
 		if(nivel.CantidadEnemigos()==contadorDeMuertesEnemigas){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
-			self.ganar(nivel.puntaje())
+			self.ganar(nivel1.puntaje())
 		} 
 		
 	}
 	
 	method ganar(puntaje){
+		configJuego.contadorDeMuertes(0)
 		game.clear()
+		configJuego.menuGeneral()
+		
 		//ganado.addVisual()
 		//agragar la cant de puntos en pantalla
 	}
 	
 	method perder(){
 		game.clear()
+		configJuego.menuGeneral()
+		
 		//
 		//debe volver al menu
 	}

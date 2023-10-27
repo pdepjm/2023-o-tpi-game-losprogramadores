@@ -2,6 +2,7 @@ import wollok.game.*
 import nave.*
 import configuracion.*
 import direcciones.*
+import niveles.*
 
 
 
@@ -136,6 +137,8 @@ class NaveEnemiga{
 		 	if(self.atacante()){ // para saber si hacer el removeOnTick o no. El atacante me dice si me esta disaparando
 		 		game.removeTickEvent("disparoEnemigo"+self.id())
 			}
+			
+		nivel1.sumarPuntaje(100)
 		configJuego.sumarMuerte()		
 		finalPartida.controlNivel(configJuego.nivelActual(), configJuego.contadorDeMuertes())
 		}
