@@ -126,7 +126,7 @@ class NaveEnemiga{
 	
 	method position() = position 
 	
-	method image() = "naveEnemiga.png"
+	method image() = "naveEnemiga2.png"
 	
 	method chocarseConNave(){
 		
