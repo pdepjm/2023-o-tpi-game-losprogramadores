@@ -5,15 +5,12 @@ import niveles.*
 
 
 object configJuego {
-
-	//var fondo = ["F0-0000.jpg","F1-0000.jpg","F2-0000.jpg","F3-0000.jpg"]
-	//var lugar = 0
 	
 	var property contadorDeMuertes = 0
 	var property nivelActual
-	const level1 = new SelectLevel(position=game.at(3,5), image="gameStart.png")
-	const level2 = new SelectLevel(position=game.at(3,4), image="gameStart.png")
-	const level3 = new SelectLevel(position=game.at(3,3), image="gameStart.png")
+	const level1 = new SelectLevel(position=game.at(3,5), image="level1.png")
+	const level2 = new SelectLevel(position=game.at(3,4), image="level2.png")
+	const level3 = new SelectLevel(position=game.at(3,3), image="level3.png")
 	
 	method level1() = level1
 	method level2() = level2
@@ -28,11 +25,8 @@ object configJuego {
 
 	
 	method iniciar(){
-		
 		self.configPantalla()
-		self.menuGeneral()
-		//self.addVisuals()
-		//self.limites()
+		self.portadaIncio()
 		game.start()
 	}
 	
@@ -44,55 +38,63 @@ object configJuego {
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(9,n)))}	
 		
 		game.onCollideDo(naveActual,{chocado => chocado.chocarseConNave()})
-		//game.onCollideDO()
-		//const nuevoLimite = new ParedInvisible(position = game.at(4,4))
+	}
+	
+	method portadaIncio(){
+		
+		game.addVisual(portada)
+		
+		keyboard.any().onPressDo({
+			self.removeVisuals()
+			self.menuGeneral()
+		})
 	}
 	
 	method menuGeneral(){
 		
+		self.removeVisuals()
+		self.addVisuals()
+		
 		game.addVisual(opcion1)
 		game.addVisual(opcion2)
 		game.addVisual(opcion3)
-		game.addVisual(flechita)
 		
-		keyboard.i().onPressDo({flechita.cambiarPosicion()})
-		keyboard.c().onPressDo({flechita.seleccionarOpcionMenu()})
+		keyboard.enter().onPressDo({flechita.seleccionarOpcionMenu()})
 		
 	}
 	
+	method menuInstrucciones(){
+		
+		self.removeVisuals()
+		self.addVisuals()
+		game.addVisual(instrucciones)
+		game.addVisual(exitInstrucciones)
+		
+		keyboard.enter().onPressDo({flechita.seleccionarOpcionInstrucciones()})
+		
+	}
+	
+	
 	method menuDeNiveles(){
 		
-			game.removeVisual(opcion1)
-			game.removeVisual(opcion2)
-			game.removeVisual(opcion3)
+			self.removeVisuals()
+			self.addVisuals()
+			
 			game.addVisual(self.level1())
 			game.addVisual(self.level2())
 			game.addVisual(self.level3())
 			
-			keyboard.enter().onPressDo({
-				flechita.seleccionarOpcionNivel()
-				game.removeVisual(self.level1())
-				game.removeVisual(self.level2())
-				game.removeVisual(self.level3())
-				game.removeVisual(flechita)
-			})
+			keyboard.enter().onPressDo({flechita.seleccionarOpcionNivel()})
 		
 	}
 	
+	method removeVisuals(){
+		game.clear()
+	}
+	
 	method addVisuals(){		
-		
-		game.addVisual(naveActual)
-		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 0, atacante = false)
-		const naveEnemiga2 = new NaveEnemiga(position = game.at(6,2), anterior = game.at(9,9), id = 1,atacante = false)
-		game.addVisual(naveEnemiga1)
-		game.addVisual(naveEnemiga2)
-		naveEnemiga2.colisionables()
-		naveEnemiga1.colisionables()
-		naveEnemiga1.atacar()
-		naveEnemiga2.seguir()
-		//naveActual.imageRotativa()
-		
-		
+		game.addVisual(flechita)
+		keyboard.down().onPressDo({flechita.cambiarPosicion()})
 	}
 	
 	method configPantalla(){
@@ -117,30 +119,21 @@ object configJuego {
 
 
 object opcion1{
+	
 	const position= game.at(3,5)
-	method image() = "gameStart.png"
+	
+	method image() = "instrucciones.png"
 	method position() = position
 	
-	method accion(){
-		//configJuego.addVisuals() // del propio nivel
-		//configJuego.configTeclasJuego() // del propio nivel
-		/// seria manejandolo del nivel
-		
-		game.removeVisual(self)
-		game.removeVisual(opcion2)
-		game.removeVisual(opcion3)
-		game.removeVisual(flechita)
-		configJuego.nivelActual(nivel1)
-		nivel1.inicarNivel()
-		configJuego.limites()
+	method accion(){		
+		configJuego.menuInstrucciones()
 	}
-	
 	
 }
 
 object opcion2{
-	const position= game.at(3,4)
 	
+	const position= game.at(3,4)
 	
 	method image() = "selectLevel.png"
 	method position() = position
@@ -152,7 +145,9 @@ object opcion2{
 }
 
 object opcion3{
+	
 	const position= game.at(3,3)
+	
 	method image() = "exit.png"
 	method position() = position
 	
@@ -172,6 +167,7 @@ class SelectLevel{
 	
 	
 	method accion(nivel){
+		configJuego.removeVisuals()
 		configJuego.nivelActual(nivel)
 		nivel.inicarNivel()
 		configJuego.limites()
@@ -180,10 +176,31 @@ class SelectLevel{
 	
 }
 
+object instrucciones{
+	var property position = game.at(3,4)
+	var property image = "instrucciones.png"
+	
+	method position() = position
+	method image()= image
+	
+	
+}
+
+object exitInstrucciones{
+	var property position = game.at(3,5)
+	var property image = "exit.png"
+	
+	method position() = position
+	method image()= image
+	
+	method accion(){
+		configJuego.menuGeneral()
+	}
+}
 
 object flechita{
 	
-	var position = game.at(2, 5)
+	var property position = game.at(2, 5)
 	
 	method position() = position
 	
@@ -215,20 +232,57 @@ object flechita{
 			configJuego.level1().accion(nivel1)
 		}
 		else if(position.y()==4){
-			configJuego.level2().accion(nivel2)
+			game.stop()
 		}
 		else{
 			game.stop()
 		}
 	}
 	
+	method seleccionarOpcionInstrucciones(){
+		if(self.position().y()==5){
+			exitInstrucciones.accion()
+		}
+	}
+	
 
 }
+
+object portada{
+	
+	var property position = game.at(2,2)
+	var property image = "portada.png"
+	
+	method position() = position
+	method image()= image
+	
+}
+
+object youWin{
+	
+	var property position = game.at(3.5,4)
+	var property image = "youWin.png"
+	
+	method position() = position
+	method image()= image
+	
+}
+
+object gameOver{
+	
+	var property position = game.at(3.5,4)
+	var property image = "gameOver.png"
+	
+	method position() = position
+	method image()= image
+	
+}
+
 
 
 object finalPartida{
 	
-	method controlNivel(nivel,contadorDeMuertesEnemigas){ // se puede sacar el contador de muertes enemigas, lo puedo pedir a config
+	method controlNivel(nivel,contadorDeMuertesEnemigas){
 		if(nivel.CantidadEnemigos()==contadorDeMuertesEnemigas){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
 			self.ganar(nivel1.puntaje())
 		} 
@@ -238,7 +292,11 @@ object finalPartida{
 	method ganar(puntaje){
 		configJuego.contadorDeMuertes(0)
 		game.clear()
-		configJuego.menuGeneral()
+		game.addVisual(youWin)
+		keyboard.any().onPressDo({
+			configJuego.removeVisuals()
+			configJuego.menuGeneral()
+		})
 		
 		//ganado.addVisual()
 		//agragar la cant de puntos en pantalla
@@ -246,7 +304,11 @@ object finalPartida{
 	
 	method perder(){
 		game.clear()
-		configJuego.menuGeneral()
+		game.addVisual(gameOver)
+		keyboard.any().onPressDo({
+			configJuego.removeVisuals()
+			configJuego.menuGeneral()
+		})
 		
 		//
 		//debe volver al menu
