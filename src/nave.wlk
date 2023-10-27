@@ -11,13 +11,15 @@ object naveActual {
 	//const image = "nave.png"
 	var vida = 1 // poner contador de vidas en pantalla
 	var imagen = 0
-	var direccion = up
-	var position = game.origin()
+	var property direccion = up
+	var position = game.origin()//game.at(5,5)
 	var anterior 
 	
+	
+
 	const listaImagenes = ["Nave_UP.png","Nave_DOWN.png","Nave_LEFT.png","Nave_RIGHT.png"]
 	
-	method direccion() = direccion
+	//method direccion() = direccion
 	
 	method atacante() = false
 	/*
@@ -34,6 +36,14 @@ object naveActual {
 	}
 	*/
 		
+	method inicializarImagen(){
+		imagen = 0
+	}
+		
+	method modifarPosicion(posicionNueva) {
+		position = posicionNueva
+	}
+	
     method image() = listaImagenes.get(imagen)
 
  	method disparar(){
@@ -42,6 +52,15 @@ object naveActual {
  		game.addVisual(bala)
  		bala.avanzar(direccion)
  		//ak desarrollar movimiento lateral
+ 		
+ 		
+ 	}
+ 	
+ 	method dispararMovimientoLateral(){
+ 		const bala = new Bala(positionBala = position, balaEnemiga = false)
+ 		bala.posicionDeDisparo(up)
+ 		game.addVisual(bala)
+ 		bala.avanzarLateralmente()
  	}
  	
 	method recibirDisparo(_){
@@ -71,25 +90,38 @@ object naveActual {
 		anterior = position
 		position = position.up(1)
 		direccion = up
-		imagen = 0
+		imagen = direccion.lugar()
 	}
 	method abajo() {
 		anterior = position
 		position = position.down(1)
 		direccion = down
-		imagen = 1
+		imagen = direccion.lugar()
 	}
 	method izquierda() {
 		anterior = position
 		position = position.left(1)
 		direccion = left
-		imagen = 2
+		imagen = direccion.lugar()
 	}
 	method derecha() {
 		anterior = position
 		position = position.right(1)
 		direccion = right
-		imagen = 3
+		imagen = direccion.lugar()
+	}
+	
+	// Desplazamiento para movimiento lateral
+	
+	method izquierdaMoviemientoLateral() {
+		anterior = position
+		position = position.left(1)
+		direccion = left
+	}
+	method derechaMoviemientoLateral() {
+		anterior = position
+		position = position.right(1)
+		direccion = right
 	}
 	
 }

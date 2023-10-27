@@ -215,7 +215,7 @@ object flechita{
 			configJuego.level1().accion(nivel1)
 		}
 		else if(position.y()==4){
-			game.stop()
+			configJuego.level2().accion(nivel2)
 		}
 		else{
 			game.stop()
@@ -228,7 +228,7 @@ object flechita{
 
 object finalPartida{
 	
-	method controlNivel(nivel,contadorDeMuertesEnemigas){
+	method controlNivel(nivel,contadorDeMuertesEnemigas){ // se puede sacar el contador de muertes enemigas, lo puedo pedir a config
 		if(nivel.CantidadEnemigos()==contadorDeMuertesEnemigas){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
 			self.ganar(nivel1.puntaje())
 		} 

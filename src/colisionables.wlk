@@ -49,6 +49,11 @@ class Bala{
 	
 	
 	method posicionDeDisparo(direccion){
+		
+		self.positionBala(direccion.posicionObejeto(self.position()))
+		
+		/* 
+		direccion.posicionObejeto(self.position())
 		if(direccion == up) {
  			 self.positionBala(self.position().up(1))
  		}else if(direccion == down) {
@@ -58,6 +63,8 @@ class Bala{
  		}else if(direccion == right){
  			self.positionBala(self.position().right(1))
  		}
+ 		* */
+ 		
  	}
 	
 	
@@ -77,21 +84,19 @@ class Bala{
 		self.objetivoAlcanzado()
 	}
 	
+	method avanzarLateralmente(){
+		game.onTick(50,"movimientoBala",{up.moverA(self)})
+		self.imagenDireccionada(up)
+		self.objetivoAlcanzado()
 	
+	}
 	
 	
 	
 	method imagenDireccionada(direccion){
-		// nose si esta bien con el if o se puede hacer mandando mensajes, entiendo que la responsabilidad es de la misma bala
-		if(naveActual.direccion() == up){
- 			lugar = 0
- 		}else if(naveActual.direccion() == down){
- 			lugar = 1 
- 		}else if (naveActual.direccion() == left){
- 			lugar = 2
- 		}else if(naveActual.direccion() == right){
- 			lugar = 3
- 		}
+		
+		lugar = direccion.lugar()
+		
 	}
 	
 
