@@ -8,9 +8,9 @@ object configJuego {
 	
 	var property contadorDeMuertes = 0
 	var property nivelActual
-	const level1 = new SelectLevel(position=game.at(3,5), image="level1.png")
-	const level2 = new SelectLevel(position=game.at(3,4), image="level2.png")
-	const level3 = new SelectLevel(position=game.at(3,3), image="level3.png")
+	const level1 = new SelectLevel(position=game.at(2,5), image="level1.png")
+	const level2 = new SelectLevel(position=game.at(2,4), image="level2.png")
+	const level3 = new SelectLevel(position=game.at(2,3), image="level3.png")
 	
 	method level1() = level1
 	method level2() = level2
@@ -58,6 +58,7 @@ object configJuego {
 		game.addVisual(opcion1)
 		game.addVisual(opcion2)
 		game.addVisual(opcion3)
+		game.addVisual(titulo)
 		
 		keyboard.enter().onPressDo({flechita.seleccionarOpcionMenu()})
 		
@@ -102,7 +103,7 @@ object configJuego {
 		game.height(9)
 		game.cellSize(120)	
 		game.boardGround("F0-0000.jpg")
-		game.title("nombreJuegoxd")
+		game.title("operacionOrbita")
 	}
 	
 	
@@ -120,7 +121,7 @@ object configJuego {
 
 object opcion1{
 	
-	const position= game.at(3,5)
+	const position= game.at(2,4)
 	
 	method image() = "instrucciones.png"
 	method position() = position
@@ -133,7 +134,7 @@ object opcion1{
 
 object opcion2{
 	
-	const position= game.at(3,4)
+	const position= game.at(2,5)
 	
 	method image() = "selectLevel.png"
 	method position() = position
@@ -146,7 +147,7 @@ object opcion2{
 
 object opcion3{
 	
-	const position= game.at(3,3)
+	const position= game.at(2,3)
 	
 	method image() = "exit.png"
 	method position() = position
@@ -186,6 +187,15 @@ object instrucciones{
 	
 }
 
+object titulo{
+	const  position = game.at(1,6)
+	const  image = "operacionOrbita.png"
+	
+	method position() = position
+	method image()= image
+}
+
+
 object exitInstrucciones{
 	var property position = game.at(3,5)
 	var property image = "exit.png"
@@ -216,11 +226,11 @@ object flechita{
 	
 	method seleccionarOpcionMenu(){
 		if(position.y()==5){
-			opcion1.accion()
+			opcion2.accion()
 		}
 		else if(position.y()==4){
 			//position = game.at(3,5)
-			opcion2.accion()
+			opcion1.accion()
 		}
 		else{
 			opcion3.accion()
@@ -260,7 +270,7 @@ object portada{
 
 object youWin{
 	
-	var property position = game.at(3.5,4)
+	var property position = game.at(1,4)
 	var property image = "youWin.png"
 	
 	method position() = position
@@ -270,7 +280,7 @@ object youWin{
 
 object gameOver{
 	
-	var property position = game.at(3.5,4)
+	var property position = game.at(1,4)
 	var property image = "gameOver.png"
 	
 	method position() = position
