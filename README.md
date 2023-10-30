@@ -9,7 +9,7 @@
 
 ## Capturas
 
-![Juego]
+![Juego](assets/portada.png)
 
 ## Instrucciones
 
