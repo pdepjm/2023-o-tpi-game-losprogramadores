@@ -246,7 +246,7 @@ object flechita{
 			configJuego.level2().accion(nivel2)
 		}
 		else{
-			game.stop()
+			configJuego.level3().accion(nivel3)
 		}
 	}
 	
@@ -325,13 +325,3 @@ object finalPartida{
 		//debe volver al menu
 	}
 }
-
-/* 
-object ganado{
-	
-	method image() = "youWin.png"
-	
-	method position() = game.center()
-}
-
- */

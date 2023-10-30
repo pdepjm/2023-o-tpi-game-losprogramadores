@@ -202,6 +202,111 @@ object nivel2 {
 
 
 object nivel3 {
+		var puntaje = 0
 	
+	method CantidadEnemigos() = 12
+	
+	method inicarNivel(){
+		self.visuals()
+		self.configuracionDeteclas()
+		naveActual.modifarPosicion(game.at(4,1))
+		naveActual.direccion(up)
+		naveActual.inicializarImagen()
+		
+	}
+	
+	method visuals(){
+		game.addVisual(naveActual)
+		const naveEnemiga8 = new NaveEnemiga(position = game.at(0,7), anterior = game.at(0,7),id = 8, atacante = false)
+		const naveEnemiga0 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 0, atacante = false)
+		const naveEnemiga1 = new NaveEnemiga(position = game.at(2,7), anterior = game.at(2,7),id = 1, atacante = false)
+		const naveEnemiga2 = new NaveEnemiga(position = game.at(3,7), anterior = game.at(3,7),id = 2, atacante = false)
+		const naveEnemiga3 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7),id = 3, atacante = false)
+		const naveEnemiga4 = new NaveEnemiga(position = game.at(5,7), anterior = game.at(5,7),id = 4, atacante = false)
+		const naveEnemiga5 = new NaveEnemiga(position = game.at(6,7), anterior = game.at(6,7),id = 5, atacante = false)
+		const naveEnemiga6 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7),id = 6, atacante = false)
+		const naveEnemiga7 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 7, atacante = false)
+		
+		
+		 
+		game.addVisual(naveEnemiga0)
+		game.addVisual(naveEnemiga1)
+		game.addVisual(naveEnemiga2)
+		game.addVisual(naveEnemiga3)
+		game.addVisual(naveEnemiga4)
+		game.addVisual(naveEnemiga5)
+		game.addVisual(naveEnemiga6)
+		game.addVisual(naveEnemiga7)
+		game.addVisual(naveEnemiga8)
+		
+	
+		 
+		naveEnemiga0.avanzarPorTiempo()
+		naveEnemiga0.inciarComportamientoBasico()
+		naveEnemiga1.inciarComportamientoBasico()
+		naveEnemiga1.avanzarPorTiempo()
+		naveEnemiga2.avanzarPorTiempo()
+		naveEnemiga2.inciarComportamientoBasico()
+		naveEnemiga3.inciarComportamientoBasico()
+		naveEnemiga3.avanzarPorTiempo()
+		naveEnemiga4.inciarComportamientoBasico()
+		naveEnemiga4.avanzarPorTiempo()
+		naveEnemiga5.inciarComportamientoBasico()
+		naveEnemiga5.avanzarPorTiempo()
+		naveEnemiga6.inciarComportamientoBasico()
+		naveEnemiga6.avanzarPorTiempo()
+		naveEnemiga7.inciarComportamientoBasico()
+		naveEnemiga7.avanzarPorTiempo()
+		naveEnemiga8.inciarComportamientoBasico()
+		naveEnemiga8.avanzarPorTiempo()
+		
+	
+		game.schedule(20000,{
+			
+			
+		const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
+		const naveEnemiga5 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 5,atacante = false)
+		const naveEnemiga6 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7), id = 6,atacante = false)
+		
+			
+		game.addVisual(naveEnemiga6)
+		game.addVisual(naveEnemiga4)
+		game.addVisual(naveEnemiga5)
+		naveEnemiga5.colisionables()
+		naveEnemiga4.colisionables()
+		naveEnemiga6.colisionables()
+		naveEnemiga5.seguir()
+		naveEnemiga4.seguir()
+		naveEnemiga6.seguir()
+			
+			
+		})
+	
+		
+		// le cuesta una barbaridad al wollok, nose se dejar solo una linea de 
+		//naveEnemiga2.seguir()
+	
+	}
+	
+	method configuracionDeteclas(){
+			
+		
+		keyboard.up().onPressDo({naveActual.arriba()})
+		keyboard.down().onPressDo({naveActual.abajo()})
+		keyboard.right().onPressDo({naveActual.derecha()})
+		keyboard.left().onPressDo({naveActual.izquierda()})
+		//keyboard.right().onPressDo({naveActual.derechaMoviemientoLateral()})
+		//keyboard.left().onPressDo({naveActual.izquierdaMoviemientoLateral()})
+		//keyboard.space().onPressDo({naveActual.dispararMovimientoLateral()})
+		keyboard.space().onPressDo({naveActual.disparar()})
+	
+	
+	}
+	
+	method sumarPuntaje(puntos){
+		puntaje =+ puntos
+	} 
+	
+	method puntaje() = puntaje
 }
 
