@@ -31,7 +31,7 @@ object nivel1 {
 		const naveEnemiga6 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7),id = 6, atacante = false)
 		const naveEnemiga7 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 7, atacante = false)
 		
-		/* 
+		
 		const naveEnemiga17 = new NaveEnemiga(position = game.at(0,8), anterior = game.at(0,8),id = 17, atacante = false)
 		const naveEnemiga9 = new NaveEnemiga(position = game.at(1,8), anterior = game.at(1,8),id = 9, atacante = false)
 		const naveEnemiga10 = new NaveEnemiga(position = game.at(2,8), anterior = game.at(2,8),id = 10, atacante = false)
@@ -41,7 +41,7 @@ object nivel1 {
 		const naveEnemiga14 = new NaveEnemiga(position = game.at(6,8), anterior = game.at(6,8),id = 14, atacante = false)
 		const naveEnemiga15 = new NaveEnemiga(position = game.at(7,8), anterior = game.at(7,8),id = 15, atacante = false)
 		const naveEnemiga16 = new NaveEnemiga(position = game.at(8,8), anterior = game.at(8,8),id = 16, atacante = false)
-		 */
+		 
 		
 		game.addVisual(naveEnemiga0)
 		game.addVisual(naveEnemiga1)
@@ -52,7 +52,7 @@ object nivel1 {
 		game.addVisual(naveEnemiga6)
 		game.addVisual(naveEnemiga7)
 		game.addVisual(naveEnemiga8)
-		/* 
+		
 		game.addVisual(naveEnemiga9)
 		game.addVisual(naveEnemiga10)
 		game.addVisual(naveEnemiga11)
@@ -62,7 +62,7 @@ object nivel1 {
 		game.addVisual(naveEnemiga15)
 		game.addVisual(naveEnemiga16)
 		game.addVisual(naveEnemiga17)
-		 */
+		 
 		naveEnemiga0.avanzarPorTiempo()
 		naveEnemiga0.inciarComportamientoBasico()
 		naveEnemiga1.inciarComportamientoBasico()
@@ -81,7 +81,7 @@ object nivel1 {
 		naveEnemiga7.avanzarPorTiempo()
 		naveEnemiga8.inciarComportamientoBasico()
 		naveEnemiga8.avanzarPorTiempo()
-		/* 
+		
 		naveEnemiga9.colisionables()
 		naveEnemiga9.avanzarPorTiempo()
 		naveEnemiga10.colisionables()
@@ -100,10 +100,10 @@ object nivel1 {
 		naveEnemiga16.avanzarPorTiempo()
 		naveEnemiga17.colisionables()
 		naveEnemiga17.avanzarPorTiempo()
-		 */
+		 
 		
 		
-//		 le cuesta una barbaridad al wollok, nose se dejar solo una linea de 
+		// le cuesta una barbaridad al wollok, nose se dejar solo una linea de 
 		//naveEnemiga2.seguir()
 	
 	}
@@ -131,7 +131,7 @@ object nivel2 {
 		
 	var puntaje = 0
 	
-	method CantidadEnemigos() = 2
+	method CantidadEnemigos() = 5
 	
 	method inicarNivel(){
 		self.visuals()
@@ -145,14 +145,37 @@ object nivel2 {
 	
 	method visuals(){
 		game.addVisual(naveActual)
-		const naveEnemiga1 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 0, atacante = false)
-		const naveEnemiga2 = new NaveEnemiga(position = game.at(6,2), anterior = game.at(9,9), id = 1,atacante = false)
-		game.addVisual(naveEnemiga1)
-		game.addVisual(naveEnemiga2)
-		naveEnemiga2.colisionables()
-		naveEnemiga1.colisionables()
-		naveEnemiga1.atacar()
-		naveEnemiga2.seguir()
+		const naveEnemiga30 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 30, atacante = false)
+		const naveEnemiga31 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 31,atacante = false)
+		
+		//game.schedule(6000,)
+		game.addVisual(naveEnemiga30)
+		game.addVisual(naveEnemiga31)
+		naveEnemiga30.colisionables()
+		naveEnemiga31.colisionables()
+		naveEnemiga31.seguir()
+		naveEnemiga30.seguir()
+		
+		game.schedule(7000,{
+			
+			
+		const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
+		const naveEnemiga5 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 5,atacante = false)
+		const naveEnemiga6 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7), id = 6,atacante = false)
+		
+			
+		game.addVisual(naveEnemiga6)
+		game.addVisual(naveEnemiga4)
+		game.addVisual(naveEnemiga5)
+		naveEnemiga5.colisionables()
+		naveEnemiga4.colisionables()
+		naveEnemiga6.colisionables()
+		naveEnemiga5.seguir()
+		naveEnemiga4.seguir()
+		naveEnemiga6.seguir()
+			
+			
+		})
 	
 	}
 	

@@ -80,7 +80,7 @@ object configJuego {
 		
 			self.removeVisuals()
 			self.addVisuals()
-			
+			game.addVisual(titulo)
 			game.addVisual(self.level1())
 			game.addVisual(self.level2())
 			game.addVisual(self.level3())
@@ -242,7 +242,8 @@ object flechita{
 			configJuego.level1().accion(nivel1)
 		}
 		else if(position.y()==4){
-			game.stop()
+			//game.stop()
+			configJuego.level2().accion(nivel2)
 		}
 		else{
 			game.stop()

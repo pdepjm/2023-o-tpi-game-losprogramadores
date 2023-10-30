@@ -109,6 +109,8 @@ class NaveEnemiga{
 	var id 
 	var property atacante
 	
+	var flagLateral = false
+	
 	const tiempoDeDisparos = [4000,6000,8000]
 	
 	const listaNaves = ["naveEnemiga0.png", "naveEnemiga1.png", "naveEnemiga2.png"]
@@ -116,7 +118,6 @@ class NaveEnemiga{
 	const imagenDefinida = listaNaves.anyOne()
 	
 	method id() = id
-	//method position() = position 
 	
 	method inciarComportamientoBasico(){
 		self.colisionables()
@@ -135,6 +136,8 @@ class NaveEnemiga{
 	method avanzarPorTiempo(){
 		game.onTick(5000,"avanzarXtiempo"+self.id(),{down.moverA(self)})
 	}
+	
+
 	
 	method morir(){
 		game.removeVisual(self)
