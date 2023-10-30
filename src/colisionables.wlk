@@ -22,7 +22,7 @@ class ParedInvisible {
 	
 	
 	method chocarConEnemigo(){
-		
+		finalPartida.perder()
 	}
 	
 	method recibirDisparo(_){
@@ -51,19 +51,6 @@ class Bala{
 	method posicionDeDisparo(direccion){
 		
 		self.positionBala(direccion.posicionObejeto(self.position()))
-		
-		/* 
-		direccion.posicionObejeto(self.position())
-		if(direccion == up) {
- 			 self.positionBala(self.position().up(1))
- 		}else if(direccion == down) {
- 			self.positionBala(self.position().down(1))
- 		}else if(direccion == left) {
- 			self.positionBala(self.position().left(1))
- 		}else if(direccion == right){
- 			self.positionBala(self.position().right(1))
- 		}
- 		* */
  		
  	}
 	
@@ -117,19 +104,36 @@ class Bala{
 
 class NaveEnemiga{
 	
-	var position
+	var property position
 	var anterior
 	var id 
 	var property atacante
 	
+	const tiempoDeDisparos = [4000,6000,8000]
+	
+	const listaNaves = ["naveEnemiga0.png", "naveEnemiga1.png", "naveEnemiga2.png"]
+	
+	const imagenDefinida = listaNaves.anyOne()
+	
 	method id() = id
+	//method position() = position 
 	
-	method position() = position 
+	method inciarComportamientoBasico(){
+		self.colisionables()
+		self.atacar()
+	}
 	
-	method image() = "naveEnemiga2.png"
+	
+	method image() = imagenDefinida
 	
 	method chocarseConNave(){
 		
+	}
+	
+	
+	
+	method avanzarPorTiempo(){
+		game.onTick(5000,"avanzarXtiempo"+self.id(),{down.moverA(self)})
 	}
 	
 	method morir(){
@@ -176,7 +180,7 @@ class NaveEnemiga{
 	
 	
 	method atacar(){
-		game.onTick(2000,"disparoEnemigo"+self.id(),{self.disparoEnemigo()})
+		game.onTick(tiempoDeDisparos.anyOne(),"disparoEnemigo"+self.id(),{self.disparoEnemigo()})
 		self.atacante(true)
 	}
 	
