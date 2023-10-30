@@ -54,12 +54,7 @@ object right{
 	method moverA(objeto){
 		self.moverseHaciaDerecha(objeto)
 	}
-	/* 
-	method moverALateralMente(objeto){
-		
-	}
-	* 
-	*/
+	
 	
 }
 

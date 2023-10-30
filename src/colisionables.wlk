@@ -109,7 +109,7 @@ class NaveEnemiga{
 	var id 
 	var property atacante
 	
-	var flagLateral = false
+	
 	
 	const tiempoDeDisparos = [4000, 6000, 8000, 10000, 12000, 14000]
 	
@@ -150,7 +150,7 @@ class NaveEnemiga{
 		 		game.removeTickEvent("disparoEnemigo"+self.id())
 			}
 			
-		nivel1.sumarPuntaje(100)
+		configJuego.nivelActual().sumarPuntaje()
 		configJuego.sumarMuerte()		
 		finalPartida.controlNivel(configJuego.nivelActual(), configJuego.contadorDeMuertes())
 		}

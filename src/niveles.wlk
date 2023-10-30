@@ -8,6 +8,7 @@ object nivel1 {
 	
 	var puntaje = 0
 	
+
 	method CantidadEnemigos() = 18
 	
 	method inicarNivel(){
@@ -17,30 +18,35 @@ object nivel1 {
 		naveActual.direccion(up)
 		naveActual.inicializarImagen()
 		
+		
 	}
 	
 	method visuals(){
+		game.addVisual(vidas)
+		game.addVisual(numeroVida)
 		game.addVisual(naveActual)
-		const naveEnemiga8 = new NaveEnemiga(position = game.at(0,7), anterior = game.at(0,7),id = 8, atacante = false)
-		const naveEnemiga0 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 0, atacante = false)
-		const naveEnemiga1 = new NaveEnemiga(position = game.at(2,7), anterior = game.at(2,7),id = 1, atacante = false)
-		const naveEnemiga2 = new NaveEnemiga(position = game.at(3,7), anterior = game.at(3,7),id = 2, atacante = false)
-		const naveEnemiga3 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7),id = 3, atacante = false)
-		const naveEnemiga4 = new NaveEnemiga(position = game.at(5,7), anterior = game.at(5,7),id = 4, atacante = false)
-		const naveEnemiga5 = new NaveEnemiga(position = game.at(6,7), anterior = game.at(6,7),id = 5, atacante = false)
-		const naveEnemiga6 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7),id = 6, atacante = false)
-		const naveEnemiga7 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 7, atacante = false)
+		game.addVisual(puntajes)
+		game.addVisual(numeroPuntaje)
+		const naveEnemiga8 = new NaveEnemiga(position = game.at(0,6), anterior = game.at(0,6),id = 8, atacante = false)
+		const naveEnemiga0 = new NaveEnemiga(position = game.at(1,6), anterior = game.at(1,6),id = 0, atacante = false)
+		const naveEnemiga1 = new NaveEnemiga(position = game.at(2,6), anterior = game.at(2,6),id = 1, atacante = false)
+		const naveEnemiga2 = new NaveEnemiga(position = game.at(3,6), anterior = game.at(3,6),id = 2, atacante = false)
+		const naveEnemiga3 = new NaveEnemiga(position = game.at(4,6), anterior = game.at(4,6),id = 3, atacante = false)
+		const naveEnemiga4 = new NaveEnemiga(position = game.at(5,6), anterior = game.at(5,6),id = 4, atacante = false)
+		const naveEnemiga5 = new NaveEnemiga(position = game.at(6,6), anterior = game.at(6,6),id = 5, atacante = false)
+		const naveEnemiga6 = new NaveEnemiga(position = game.at(7,6), anterior = game.at(7,6),id = 6, atacante = false)
+		const naveEnemiga7 = new NaveEnemiga(position = game.at(8,6), anterior = game.at(8,6),id = 7, atacante = false)
 		
 		
-		const naveEnemiga17 = new NaveEnemiga(position = game.at(0,8), anterior = game.at(0,8),id = 17, atacante = false)
-		const naveEnemiga9 = new NaveEnemiga(position = game.at(1,8), anterior = game.at(1,8),id = 9, atacante = false)
-		const naveEnemiga10 = new NaveEnemiga(position = game.at(2,8), anterior = game.at(2,8),id = 10, atacante = false)
-		const naveEnemiga11 = new NaveEnemiga(position = game.at(3,8), anterior = game.at(3,8),id = 11, atacante = false)
-		const naveEnemiga12 = new NaveEnemiga(position = game.at(4,8), anterior = game.at(4,8),id = 12, atacante = false)
-		const naveEnemiga13 = new NaveEnemiga(position = game.at(5,8), anterior = game.at(5,8),id = 13, atacante = false)
-		const naveEnemiga14 = new NaveEnemiga(position = game.at(6,8), anterior = game.at(6,8),id = 14, atacante = false)
-		const naveEnemiga15 = new NaveEnemiga(position = game.at(7,8), anterior = game.at(7,8),id = 15, atacante = false)
-		const naveEnemiga16 = new NaveEnemiga(position = game.at(8,8), anterior = game.at(8,8),id = 16, atacante = false)
+		const naveEnemiga17 = new NaveEnemiga(position = game.at(0,7), anterior = game.at(0,7),id = 17, atacante = false)
+		const naveEnemiga9 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(2,7),id = 9, atacante = false)
+		const naveEnemiga10 = new NaveEnemiga(position = game.at(2,7), anterior = game.at(2,7),id = 10, atacante = false)
+		const naveEnemiga11 = new NaveEnemiga(position = game.at(3,7), anterior = game.at(3,7),id = 11, atacante = false)
+		const naveEnemiga12 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7),id = 12, atacante = false)
+		const naveEnemiga13 = new NaveEnemiga(position = game.at(5,7), anterior = game.at(5,7),id = 13, atacante = false)
+		const naveEnemiga14 = new NaveEnemiga(position = game.at(6,7), anterior = game.at(6,7),id = 14, atacante = false)
+		const naveEnemiga15 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7),id = 15, atacante = false)
+		const naveEnemiga16 = new NaveEnemiga(position = game.at(8,7), anterior = game.at(8,7),id = 16, atacante = false)
 		 
 		
 		game.addVisual(naveEnemiga0)
@@ -119,8 +125,8 @@ object nivel1 {
 	
 	}
 	
-	method sumarPuntaje(puntos){
-		puntaje =+ puntos
+	method sumarPuntaje(){
+		puntaje = puntaje + 1
 	} 
 	
 	method puntaje() = puntaje
@@ -192,8 +198,8 @@ object nivel2 {
 	
 	}
 	
-	method sumarPuntaje(puntos){
-		puntaje =+ puntos
+	method sumarPuntaje(){
+		puntaje =+ 1
 	} 
 	
 	method puntaje() = puntaje
@@ -295,18 +301,59 @@ object nivel3 {
 		keyboard.down().onPressDo({naveActual.abajo()})
 		keyboard.right().onPressDo({naveActual.derecha()})
 		keyboard.left().onPressDo({naveActual.izquierda()})
-		//keyboard.right().onPressDo({naveActual.derechaMoviemientoLateral()})
-		//keyboard.left().onPressDo({naveActual.izquierdaMoviemientoLateral()})
-		//keyboard.space().onPressDo({naveActual.dispararMovimientoLateral()})
 		keyboard.space().onPressDo({naveActual.disparar()})
 	
 	
 	}
 	
-	method sumarPuntaje(puntos){
-		puntaje =+ puntos
+	method sumarPuntaje(){
+		puntaje =+ 1
 	} 
 	
 	method puntaje() = puntaje
+}
+
+object vidas{
+	
+	var property position = game.at(0,8)
+	var property image = "vidas.png"
+	
+	method position() = position
+	method image()= image
+	
+}
+
+object numeroVida{
+	
+	//var image = naveActual.vidas()+".png"
+	
+	const listaNumeros = ["1.png","2.png","3.png"]
+	
+	const  position = game.at(1,8)
+	const image = "3.png"
+	
+	method position() = position
+	method image()= listaNumeros.get(naveActual.vidas()-1)
+	
+}
+object puntajes{
+	
+	const position = game.at(6,8)
+	const image = "puntos.png"
+	
+	method position() = position
+	method image()= image
+	
+}
+object numeroPuntaje{
+	
+	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
+	
+	const position = game.at(8,8)
+	
+	
+	method position() = position
+	method image()= listaNumeros.get(configJuego.nivelActual().puntaje())
+	
 }
 
