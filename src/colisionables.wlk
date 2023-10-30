@@ -111,7 +111,7 @@ class NaveEnemiga{
 	
 	var flagLateral = false
 	
-	const tiempoDeDisparos = [4000,6000,8000]
+	const tiempoDeDisparos = [4000, 6000, 8000, 10000, 12000, 14000]
 	
 	const listaNaves = ["naveEnemiga0.png", "naveEnemiga1.png", "naveEnemiga2.png"]
 	

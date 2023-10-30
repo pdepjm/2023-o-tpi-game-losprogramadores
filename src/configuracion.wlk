@@ -89,14 +89,15 @@ object configJuego {
 		
 	}
 	
+	method addVisuals(){		
+		game.addVisual(flechita)
+		keyboard.down().onPressDo({flechita.cambiarPosicion()})
+		keyboard.up().onPressDo({flechita.cambiarPosicionUp()})
+	}
 	method removeVisuals(){
 		game.clear()
 	}
 	
-	method addVisuals(){		
-		game.addVisual(flechita)
-		keyboard.down().onPressDo({flechita.cambiarPosicion()})
-	}
 	
 	method configPantalla(){
 		game.width(9)
@@ -221,6 +222,14 @@ object flechita{
 			position = game.at(position.x(), 5)
 		}else{
 			position = game.at(position.x(), position.y()-1)
+		}
+	}
+	
+	method cambiarPosicionUp(){
+		if(position.y()>=5){
+			position = game.at(position.x(), 3)
+		}else{
+			position = game.at(position.x(), position.y()+1)
 		}
 	}
 	
