@@ -6,7 +6,7 @@ import direcciones.*
 
 object nivel1 {
 	
-	var puntaje = 0
+	var property puntaje = 0
 	
 
 	method CantidadEnemigos() = 18
@@ -17,6 +17,9 @@ object nivel1 {
 		naveActual.modifarPosicion(game.at(4,1))
 		naveActual.direccion(up)
 		naveActual.inicializarImagen()
+		self.puntaje(0)
+		configJuego.contadorDeMuertes(0)
+		naveActual.vida(3)
 		
 		
 	}
@@ -24,9 +27,9 @@ object nivel1 {
 	method visuals(){
 		game.addVisual(vidas)
 		game.addVisual(numeroVida)
-		game.addVisual(naveActual)
 		game.addVisual(puntajes)
 		game.addVisual(numeroPuntaje)
+		game.addVisual(naveActual)
 		const naveEnemiga8 = new NaveEnemiga(position = game.at(0,6), anterior = game.at(0,6),id = 8, atacante = false)
 		const naveEnemiga0 = new NaveEnemiga(position = game.at(1,6), anterior = game.at(1,6),id = 0, atacante = false)
 		const naveEnemiga1 = new NaveEnemiga(position = game.at(2,6), anterior = game.at(2,6),id = 1, atacante = false)
@@ -129,13 +132,12 @@ object nivel1 {
 		puntaje = puntaje + 1
 	} 
 	
-	method puntaje() = puntaje
 	
 }
 
 object nivel2 {
 		
-	var puntaje = 0
+	var property puntaje = 0
 	
 	method CantidadEnemigos() = 5
 	
@@ -145,11 +147,19 @@ object nivel2 {
 		naveActual.modifarPosicion(game.at(4,1))
 		naveActual.direccion(up)
 		naveActual.inicializarImagen()
+		self.puntaje(0)
+		configJuego.contadorDeMuertes(0)
+		naveActual.vida(3)
+		
 		
 		
 	}
 	
 	method visuals(){
+		game.addVisual(vidas)
+		game.addVisual(numeroVida)
+		game.addVisual(puntajes)
+		game.addVisual(numeroPuntaje)
 		game.addVisual(naveActual)
 		const naveEnemiga30 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 30, atacante = false)
 		const naveEnemiga31 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 31,atacante = false)
@@ -199,16 +209,14 @@ object nivel2 {
 	}
 	
 	method sumarPuntaje(){
-		puntaje =+ 1
+		puntaje = puntaje + 1
 	} 
-	
-	method puntaje() = puntaje
 	
 	}
 
 
 object nivel3 {
-		var puntaje = 0
+	var property puntaje = 0
 	
 	method CantidadEnemigos() = 12
 	
@@ -218,10 +226,18 @@ object nivel3 {
 		naveActual.modifarPosicion(game.at(4,1))
 		naveActual.direccion(up)
 		naveActual.inicializarImagen()
+		self.puntaje(0)
+		configJuego.contadorDeMuertes(0)
+		naveActual.vida(3)
+		
 		
 	}
 	
 	method visuals(){
+		game.addVisual(vidas)
+		game.addVisual(numeroVida)
+		game.addVisual(puntajes)
+		game.addVisual(numeroPuntaje)
 		game.addVisual(naveActual)
 		const naveEnemiga8 = new NaveEnemiga(position = game.at(0,7), anterior = game.at(0,7),id = 8, atacante = false)
 		const naveEnemiga0 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 0, atacante = false)
@@ -307,10 +323,10 @@ object nivel3 {
 	}
 	
 	method sumarPuntaje(){
-		puntaje =+ 1
+		puntaje = puntaje + 1
 	} 
 	
-	method puntaje() = puntaje
+	
 }
 
 object vidas{

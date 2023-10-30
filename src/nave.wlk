@@ -9,7 +9,7 @@ object naveActual {
 	
 	// luego un properyNave
 	//const image = "nave.png"
-	var vida = 3 // poner contador de vidas en pantalla
+	var property vida = 3 // poner contador de vidas en pantalla
 	var imagen = 0
 	var property direccion = up
 	var position = game.origin()//game.at(5,5)
