@@ -9,7 +9,7 @@
 
 ## Capturas
 
-![Juego](assets/portada.png)
+![Juego](assets/portada.png) ![Nave](assets/0p.png)
 
 ## Instrucciones
 
