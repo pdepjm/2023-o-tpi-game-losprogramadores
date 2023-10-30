@@ -9,7 +9,7 @@
 
 ## Capturas
 
-(agregar)
+![Juego]
 
 ## Instrucciones
 
@@ -30,6 +30,7 @@
 - En estos niveles, la nave exhibirá animaciones fluidas que corresponden con todos los movimientos realizados, incluido el ascenso y descenso.
 - Continúa utilizando la barra espaciadora para efectuar disparos hacia los enemigos y obstáculos en tu camino
 
+## Reglas
 
 ## Otros
 
