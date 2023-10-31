@@ -21,7 +21,6 @@
 ### Nivel 1 - Navegación Lateral:
 
 - Maneja la nave utilizando las teclas de flecha hacia la izquierda (←) o hacia la derecha (→) para desplazarte lateralmente en el escenario.
-- A pesar de que la nave tiene la capacidad de moverse hacia arriba y hacia abajo, no se visualizarán animaciones de este movimiento en el nivel 1.
 - Presiona la barra espaciadora para disparar a los enemigos y obstáculos.
 
 ### Nivel 2 y 3 - Navegación en Cuatro Direcciones:
