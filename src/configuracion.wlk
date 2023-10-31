@@ -44,8 +44,7 @@ object configJuego {
 		
 		game.addVisual(portada)
 		
-		keyboard.any().onPressDo({
-			self.removeVisuals()
+		keyboard.space().onPressDo({
 			self.menuGeneral()
 		})
 	}
@@ -320,7 +319,15 @@ object gameOver{
 	
 }
 
-
+object pressSpaceToContinue{
+	
+	var property position = game.at(3, 3)
+	var property image = "pressSpaceToContinue.png"
+	
+	method position() = position
+	method image()= image
+		
+}
 
 object finalPartida{
 	
@@ -335,28 +342,21 @@ object finalPartida{
 		configJuego.contadorDeMuertes(0)
 		game.clear()
 		game.addVisual(youWin)
-		game.addVisual(puntajeFinal)
-		game.addVisual(numeroPuntajeFinal)
-		game.schedule(2000,{self.volverAMenu()})
+		game.addVisual(pressSpaceToContinue)
+		keyboard.space().onPressDo({
+			configJuego.menuGeneral()
+		})
 		
 	}
 	
 	method perder(){
-		
 		game.clear()
 		game.addVisual(gameOver)
-		game.addVisual(puntajeFinal)
-		game.addVisual(numeroPuntajeFinal)
-		keyboard.any().onPressDo({
-			configJuego.removeVisuals()
+		game.addVisual(pressSpaceToContinue)
+		keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})
-		game.schedule(2000,{self.volverAMenu()})
-	}
-	
-	method volverAMenu(){
-		configJuego.removeVisuals()
-		configJuego.menuGeneral()
+
 	}
 }
 
