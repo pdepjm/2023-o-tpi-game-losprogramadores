@@ -152,7 +152,7 @@ class NaveEnemiga{
 			
 		configJuego.nivelActual().sumarPuntaje()
 		configJuego.sumarMuerte()		
-		finalPartida.controlNivel(configJuego.nivelActual(), configJuego.contadorDeMuertes())
+		finalPartida.controlNivel(configJuego.nivelActual())
 		}
 		 
 	}

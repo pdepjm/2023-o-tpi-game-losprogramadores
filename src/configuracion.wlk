@@ -103,6 +103,8 @@ object configJuego {
 		game.width(9)
 		game.height(9)
 		game.cellSize(120)	
+		fondo.fondoRotativo()
+		game.addVisual(fondo)
 		game.boardGround("F0-0000.jpg")
 		game.title("operacionOrbita")
 	}
@@ -286,6 +288,26 @@ object youWin{
 	method position() = position
 	method image()= image
 	
+	
+}
+
+object puntajeFinal{
+	var property position = game.at(2,3)
+	var property image = "puntaje.png"
+	
+	method position() = position
+	method image()= image
+}
+
+object numeroPuntajeFinal{
+	
+	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
+	
+	const position = game.at(5,3)
+
+	method position() = position
+	method image()= listaNumeros.get(configJuego.nivelActual().puntaje())
+	
 }
 
 object gameOver{
@@ -302,35 +324,56 @@ object gameOver{
 
 object finalPartida{
 	
-	method controlNivel(nivel,contadorDeMuertesEnemigas){
-		if(nivel.CantidadEnemigos()==contadorDeMuertesEnemigas){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
-			self.ganar(nivel1.puntaje())
-		} 
+	method controlNivel(nivel){
 		
+		if(nivel.CantidadEnemigos()==configJuego.contadorDeMuertes()){ // nivel.CantidadEnemigos() me da la cantidad de enemidos segun el nivel
+			self.ganar()
+		} 
 	}
 	
-	method ganar(puntaje){
+	method ganar(){
 		configJuego.contadorDeMuertes(0)
 		game.clear()
 		game.addVisual(youWin)
-		keyboard.any().onPressDo({
-			configJuego.removeVisuals()
-			configJuego.menuGeneral()
-		})
+		game.addVisual(puntajeFinal)
+		game.addVisual(numeroPuntajeFinal)
+		game.schedule(2000,{self.volverAMenu()})
 		
-		//ganado.addVisual()
-		//agragar la cant de puntos en pantalla
 	}
 	
 	method perder(){
+		
 		game.clear()
 		game.addVisual(gameOver)
+		game.addVisual(puntajeFinal)
+		game.addVisual(numeroPuntajeFinal)
 		keyboard.any().onPressDo({
 			configJuego.removeVisuals()
 			configJuego.menuGeneral()
 		})
-		
-		//
-		//debe volver al menu
+		game.schedule(2000,{self.volverAMenu()})
 	}
+	
+	method volverAMenu(){
+		configJuego.removeVisuals()
+		configJuego.menuGeneral()
+	}
+}
+
+object fondo{
+	var position = game.center()
+	var listaFondos = ["F0-0000.png","F1-0000.png","F2-0000.png","F3-0000.png","F4-0000.png","F5-0000.png","F6-0000.png","F7-0000.png","F8-0000.png","F9-0000.png","F10-0000.png","F11-0000.png","F12-0000.png","F13-0000.png","F14-0000.png","F15-0000.png","F16-0000.png"]
+	var lugar = 0
+	
+	
+	method fondoRotativo(){
+		if(lugar != 16){
+			lugar = lugar + 1
+		}else{
+			lugar = 0
+		}
+	}
+	
+	method position() = position
+	method image()= listaFondos.get(lugar)
 }

@@ -7,9 +7,7 @@ import configuracion.*
 
 object naveActual {
 	
-	// luego un properyNave
-	//const image = "nave.png"
-	var property vida = 3 // poner contador de vidas en pantalla
+	var property vida = 3 
 	var imagen = 0
 	var property direccion = up
 	var position = game.origin()//game.at(5,5)
@@ -18,22 +16,8 @@ object naveActual {
 	
 	method vidas() = vida
 	
-	//method direccion() = direccion
 	
 	method atacante() = false
-	/*
-	method imageRotativa(){
-		game.onTick(400,"movimientoNave",{self.lugarImagen()})
-	}
-	
-	method lugarImagen(){
-		if(lugar == 2){
-				lugar = 0
-			}else{
-				lugar++
-			}
-	}
-	*/
 		
 	method inicializarImagen(){
 		imagen = 0
@@ -50,9 +34,6 @@ object naveActual {
  		bala.posicionDeDisparo(direccion)
  		game.addVisual(bala)
  		bala.avanzar(direccion)
- 		//ak desarrollar movimiento lateral
- 		
- 		
  	}
  	
  	method dispararMovimientoLateral(){
