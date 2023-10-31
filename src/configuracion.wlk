@@ -321,7 +321,7 @@ object gameOver{
 
 object pressSpaceToContinue{
 	
-	var property position = game.at(3, 3)
+	var property position = game.at(3, 1)
 	var property image = "pressSpaceToContinue.png"
 	
 	method position() = position
@@ -342,21 +342,28 @@ object finalPartida{
 		configJuego.contadorDeMuertes(0)
 		game.clear()
 		game.addVisual(youWin)
-		game.addVisual(pressSpaceToContinue)
+		game.addVisual(puntajeFinal)
+		game.addVisual(numeroPuntajeFinal)
+		//game.schedule(2000,{self.volverAMenu()})
+		game.schedule(4000,{configJuego.menuGeneral()})
+		/*game.addVisual(pressSpaceToContinue)
 		keyboard.space().onPressDo({
 			configJuego.menuGeneral()
-		})
+		})*/
 		
 	}
 	
 	method perder(){
 		game.clear()
 		game.addVisual(gameOver)
-		game.addVisual(pressSpaceToContinue)
-		keyboard.space().onPressDo({
+		//game.addVisual(pressSpaceToContinue)
+		game.addVisual(puntajeFinal)
+		game.addVisual(numeroPuntajeFinal)
+		game.schedule(4000,{configJuego.menuGeneral()})
+		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})
-
+		*/
 	}
 }
 

@@ -296,11 +296,15 @@ object nivel3 {
 		naveEnemiga4.colisionables()
 		naveEnemiga6.colisionables()
 		naveEnemiga5.seguir()
+		naveEnemiga5.atacar()
 		naveEnemiga4.seguir()
+		naveEnemiga4.atacar()
 		naveEnemiga6.seguir()
+		naveEnemiga6.atacar()
 			
 			
 		})
+		
 	
 		
 		// le cuesta una barbaridad al wollok, nose se dejar solo una linea de 
@@ -323,6 +327,8 @@ object nivel3 {
 	method sumarPuntaje(){
 		puntaje = puntaje + 1
 	} 
+	
+	
 	
 	
 }
