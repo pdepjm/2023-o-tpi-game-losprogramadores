@@ -111,7 +111,8 @@ class NaveEnemiga{
 	
 	
 	
-	const tiempoDeDisparos = [4000, 6000, 8000, 10000]
+	const tiempoDeDisparos = [4000, 6000, 8000]
+	
 	
 	const listaNaves = ["naveEnemiga0.png", "naveEnemiga1.png", "naveEnemiga2.png"]
 	
@@ -149,7 +150,7 @@ class NaveEnemiga{
 		 	if(self.atacante()){ // para saber si hacer el removeOnTick o no. El atacante me dice si me esta disaparando
 		 		game.removeTickEvent("disparoEnemigo"+self.id())
 			}
-			
+		game.sound("ExplosionNave.wav").play()
 		configJuego.nivelActual().sumarPuntaje()
 		configJuego.sumarMuerte()		
 		configJuego.nivelActual().segundaTanda(configJuego.contadorDeMuertes())

@@ -148,6 +148,7 @@ object nivel2 {
 	method inicarNivel(){
 		self.visuals()
 		self.configuracionDeteclas()
+		//game.sound("nivelElegido.wav").play()
 		naveActual.modifarPosicion(game.at(4,1))
 		naveActual.direccion(up)
 		naveActual.inicializarImagen()
@@ -221,7 +222,7 @@ object nivel2 {
 
 object nivel3 {
 	var property puntaje = 0
-	var estado = false
+	var estado
 	
 	method CantidadEnemigos() = 12
 	
@@ -234,6 +235,7 @@ object nivel3 {
 		self.puntaje(0)
 		configJuego.contadorDeMuertes(0)
 		naveActual.vida(3)
+		estado = false
 		
 		
 	}

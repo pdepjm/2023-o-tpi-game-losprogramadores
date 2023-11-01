@@ -213,8 +213,7 @@ object flechita{
 	method image() = "flechaSeleccionadora.png"
 	
 	method cambiarPosicion(){
-		//game.sound("opcionArcade.wav")
-		//sound.play("opcionArcade.wav")
+		game.sound("opcionArcade.wav").play()
 		if(position.y()<=3){
 			position = game.at(position.x(), 5)
 		}else{
@@ -223,7 +222,7 @@ object flechita{
 	}
 	
 	method cambiarPosicionUp(){
-		game.sound("opcionArcade.wav")
+		game.sound("opcionArcade.wav").play()
 		if(position.y()>=5){
 			position = game.at(position.x(), 3)
 		}else{
@@ -249,13 +248,15 @@ object flechita{
 	
 	method seleccionarOpcionNivel(){
 		if(position.y()==5){
+			//game.sound("eleccionNivel.wav").play()
 			configJuego.level1().accion(nivel1)
 		}
 		else if(position.y()==4){
-			//game.stop()
+			//game.sound("eleccionNivel.wav").play()
 			configJuego.level2().accion(nivel2)
 		}
 		else{
+			//game.sound("eleccionNivel.wav").play()
 			configJuego.level3().accion(nivel3)
 		}
 	}
@@ -346,6 +347,7 @@ object finalPartida{
 		game.schedule(2000,{configJuego.menuGeneral()})
 		game.addVisual(puntajeFinal)
 		game.addVisual(numeroPuntajeFinal)
+		game.sound("youWin.wav").play()
 		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})*/
@@ -359,6 +361,7 @@ object finalPartida{
 		game.schedule(2000,{configJuego.menuGeneral()})
 		game.addVisual(puntajeFinal)
 		game.addVisual(numeroPuntajeFinal)
+		game.sound("gameOver.wav").play()
 		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})

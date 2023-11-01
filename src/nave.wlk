@@ -35,21 +35,18 @@ object naveActual {
  			bala.posicionDeDisparo(direccion)
  			game.addVisual(bala)
  			bala.avanzar(direccion)
+ 			game.sound("Disparo.wav").play()
  		}else{
  			const bala = new Bala(positionBala = position, balaEnemiga = false)
  			bala.posicionDeDisparo(up)
 	 		game.addVisual(bala)
 	 		bala.avanzarLateralmente()
+	 		game.sound("Disparo.wav").play()
  		}
  		
  	}
  	
- 	method dispararMovimientoLateral(){
- 		const bala = new Bala(positionBala = position, balaEnemiga = false)
- 		bala.posicionDeDisparo(up)
- 		game.addVisual(bala)
- 		bala.avanzarLateralmente()
- 	}
+ 
  	
 	method recibirDisparo(_){
 		vida--
