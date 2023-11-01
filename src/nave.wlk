@@ -29,11 +29,19 @@ object naveActual {
 	
     method image() = listaImagenes.get(imagen)
 
- 	method disparar(){
- 		const bala = new Bala(positionBala = position, balaEnemiga = false)
- 		bala.posicionDeDisparo(direccion)
- 		game.addVisual(bala)
- 		bala.avanzar(direccion)
+ 	method disparar(estado){
+ 		if(estado){
+ 			const bala = new Bala(positionBala = position, balaEnemiga = false)
+ 			bala.posicionDeDisparo(direccion)
+ 			game.addVisual(bala)
+ 			bala.avanzar(direccion)
+ 		}else{
+ 			const bala = new Bala(positionBala = position, balaEnemiga = false)
+ 			bala.posicionDeDisparo(up)
+	 		game.addVisual(bala)
+	 		bala.avanzarLateralmente()
+ 		}
+ 		
  	}
  	
  	method dispararMovimientoLateral(){
@@ -78,17 +86,30 @@ object naveActual {
 		direccion = down
 		imagen = direccion.lugar()
 	}
-	method izquierda() {
-		anterior = position
-		position = position.left(1)
-		direccion = left
-		imagen = direccion.lugar()
+	method izquierda(estado) {
+		if(estado){
+			anterior = position
+			position = position.left(1)
+			direccion = left
+			imagen = direccion.lugar()
+		}else{
+			anterior = position
+			position = position.left(1)
+			direccion = left
+		}
 	}
-	method derecha() {
-		anterior = position
-		position = position.right(1)
-		direccion = right
-		imagen = direccion.lugar()
+	
+	method derecha(estado) {
+		if(estado){
+			anterior = position
+			position = position.right(1)
+			direccion = right
+			imagen = direccion.lugar()
+		}else{
+			anterior = position
+			position = position.right(1)
+			direccion = right
+		}
 	}
 	
 	// Desplazamiento para movimiento lateral
