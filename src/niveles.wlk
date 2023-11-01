@@ -216,7 +216,7 @@ object nivel2 {
 		puntaje = puntaje + 1
 	} 
 	
-}
+} 
 
 
 object nivel3 {

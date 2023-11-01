@@ -213,6 +213,8 @@ object flechita{
 	method image() = "flechaSeleccionadora.png"
 	
 	method cambiarPosicion(){
+		//game.sound("opcionArcade.wav")
+		//sound.play("opcionArcade.wav")
 		if(position.y()<=3){
 			position = game.at(position.x(), 5)
 		}else{
@@ -221,6 +223,7 @@ object flechita{
 	}
 	
 	method cambiarPosicionUp(){
+		game.sound("opcionArcade.wav")
 		if(position.y()>=5){
 			position = game.at(position.x(), 3)
 		}else{
@@ -231,13 +234,16 @@ object flechita{
 	method seleccionarOpcionMenu(){
 		if(position.y()==5){
 			opcion2.accion()
+			//game.sound("nivelElegido.wav")
 		}
 		else if(position.y()==4){
 			//position = game.at(3,5)
 			opcion1.accion()
+			//game.sound("nivelElegido.wav")
 		}
 		else{
 			opcion3.accion()
+			//game.sound("nivelElegido.wav")
 		}
 	}
 	
