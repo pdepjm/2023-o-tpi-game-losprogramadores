@@ -119,18 +119,22 @@ object nivel1 {
 	
 	method configuracionDeteclas(){
 			
-		//keyboard.up().onPressDo({naveActual.arriba()})
-		//keyboard.down().onPressDo({naveActual.abajo()})
-		keyboard.right().onPressDo({naveActual.derechaMoviemientoLateral()})
-		keyboard.left().onPressDo({naveActual.izquierdaMoviemientoLateral()})
-		keyboard.space().onPressDo({naveActual.dispararMovimientoLateral()})
-		//keyboard.space().onPressDo({naveActual.disparar()})
-	
+		
+		keyboard.right().onPressDo({naveActual.derecha(false)})
+		keyboard.left().onPressDo({naveActual.izquierda(false)})
+
+		keyboard.space().onPressDo({naveActual.disparar(false)})
+	 
 	}
 	
 	method sumarPuntaje(){
 		puntaje = puntaje + 1
 	} 
+	method segundaTanda(_){
+			
+			
+	}
+	
 	
 	
 }
@@ -167,13 +171,16 @@ object nivel2 {
 		game.addVisual(naveEnemiga31)
 		naveEnemiga30.colisionables()
 		naveEnemiga31.colisionables()
-		naveEnemiga31.seguir()
-		naveEnemiga30.seguir()
+		//naveEnemiga31.seguir()
+		//naveEnemiga30.seguir()
 		
-		game.schedule(7000,{
-			
-			
-		const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
+		
+	
+	}
+	
+	method segundaTanda(cantidadEnemigosAsesinados){
+		if(cantidadEnemigosAsesinados == 2){
+			const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
 		const naveEnemiga5 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 5,atacante = false)
 		const naveEnemiga6 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7), id = 6,atacante = false)
 		
@@ -189,20 +196,19 @@ object nivel2 {
 		naveEnemiga6.seguir()
 			
 			
-		})
-	
+		}
 	}
 	
 	method configuracionDeteclas(){
 			
 		keyboard.up().onPressDo({naveActual.arriba()})
 		keyboard.down().onPressDo({naveActual.abajo()})
-		keyboard.right().onPressDo({naveActual.derecha()})
-		keyboard.left().onPressDo({naveActual.izquierda()})
+		keyboard.right().onPressDo({naveActual.derecha(true)})
+		keyboard.left().onPressDo({naveActual.izquierda(true)})
 		//keyboard.right().onPressDo({naveActual.derechaMoviemientoLateral()})
 		//keyboard.left().onPressDo({naveActual.izquierdaMoviemientoLateral()})
 		//keyboard.space().onPressDo({naveActual.dispararMovimientoLateral()})
-		keyboard.space().onPressDo({naveActual.disparar()})
+		keyboard.space().onPressDo({naveActual.disparar(true)})
 	
 	}
 	
@@ -215,6 +221,7 @@ object nivel2 {
 
 object nivel3 {
 	var property puntaje = 0
+	var estado = false
 	
 	method CantidadEnemigos() = 12
 	
@@ -281,29 +288,6 @@ object nivel3 {
 		naveEnemiga8.avanzarPorTiempo()
 		
 	
-		game.schedule(20000,{
-			
-			
-		const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
-		const naveEnemiga5 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 5,atacante = false)
-		const naveEnemiga6 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7), id = 6,atacante = false)
-		
-			
-		game.addVisual(naveEnemiga6)
-		game.addVisual(naveEnemiga4)
-		game.addVisual(naveEnemiga5)
-		naveEnemiga5.colisionables()
-		naveEnemiga4.colisionables()
-		naveEnemiga6.colisionables()
-		naveEnemiga5.seguir()
-		naveEnemiga5.atacar()
-		naveEnemiga4.seguir()
-		naveEnemiga4.atacar()
-		naveEnemiga6.seguir()
-		naveEnemiga6.atacar()
-			
-			
-		})
 		
 	
 		
@@ -312,14 +296,42 @@ object nivel3 {
 	
 	}
 	
-	method configuracionDeteclas(){
+	method segundaTanda(cantidadEnemigosAsesinados){
+		if(cantidadEnemigosAsesinados == 9){
 			
+			estado = true
+			const naveEnemiga4 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 4, atacante = false)
+			const naveEnemiga5 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 5,atacante = false)
+			const naveEnemiga6 = new NaveEnemiga(position = game.at(4,7), anterior = game.at(4,7), id = 6,atacante = false)
 		
+			
+			game.addVisual(naveEnemiga6)
+			game.addVisual(naveEnemiga4)
+			game.addVisual(naveEnemiga5)
+			naveEnemiga5.colisionables()
+			naveEnemiga4.colisionables()
+			naveEnemiga6.colisionables()
+			naveEnemiga5.seguir()
+			naveEnemiga5.atacar()
+			naveEnemiga4.seguir()
+			naveEnemiga4.atacar()
+			naveEnemiga6.seguir()
+			naveEnemiga6.atacar()
+			
+				
 		keyboard.up().onPressDo({naveActual.arriba()})
 		keyboard.down().onPressDo({naveActual.abajo()})
-		keyboard.right().onPressDo({naveActual.derecha()})
-		keyboard.left().onPressDo({naveActual.izquierda()})
-		keyboard.space().onPressDo({naveActual.disparar()})
+			
+			
+		}
+	}
+	
+	method configuracionDeteclas(){
+			
+	
+		keyboard.right().onPressDo({naveActual.derecha(estado)})
+		keyboard.left().onPressDo({naveActual.izquierda(estado)})
+		keyboard.space().onPressDo({naveActual.disparar(estado)})
 	
 	
 	}
@@ -341,6 +353,10 @@ object vidas{
 	method position() = position
 	method image()= image
 	
+	method chocarseConNave(){
+		naveActual.rebotar()
+	}
+	
 }
 
 object numeroVida{
@@ -354,6 +370,10 @@ object numeroVida{
 	
 	method position() = position
 	method image()= listaNumeros.get(naveActual.vidas()-1)
+	
+	method chocarseConNave(){
+		naveActual.rebotar()
+	}
 	
 }
 object puntajes{
@@ -372,6 +392,10 @@ object puntajes{
 		
 	}
 	
+	method chocarseConNave(){
+		naveActual.rebotar()
+	}
+	
 }
 
 
@@ -383,6 +407,9 @@ object numeroPuntaje{
 	
 	method recibirDisparo(_){
 		
+	}
+	method chocarseConNave(){
+		naveActual.rebotar()
 	}
 	
 	method position() = position
