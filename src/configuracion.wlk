@@ -36,6 +36,8 @@ object configJuego {
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,-1)))}
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,8)))}	
 		game.addVisual(new ParedInvisible(position= game.at(7,8)))
+		game.addVisual(new ParedInvisible(position= game.at(0,8)))
+		game.addVisual(new ParedInvisible(position= game.at(1,8)))
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(9,n)))}	
 		
 		game.onCollideDo(naveActual,{chocado => chocado.chocarseConNave()})

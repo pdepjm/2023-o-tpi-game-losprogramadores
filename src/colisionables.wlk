@@ -95,6 +95,7 @@ class Bala{
 	
 	method chocarseCon(chocado,objetivoAModificar){
 		game.removeVisual(self)
+		//problema ak creo que le pega a 2 cosas al mismo tiempo, la primera ejecuta la 97 y la segunda tambien pero ya no existe mas el objeto bala
 		chocado.recibirDisparo(objetivoAModificar)
 		
 	}
@@ -149,12 +150,12 @@ class NaveEnemiga{
 			self.morir()
 		 	if(self.atacante()){ // para saber si hacer el removeOnTick o no. El atacante me dice si me esta disaparando
 		 		game.removeTickEvent("disparoEnemigo"+self.id())
-			}
-		game.sound("ExplosionNave.wav").play()
-		configJuego.nivelActual().sumarPuntaje()
-		configJuego.sumarMuerte()		
-		configJuego.nivelActual().segundaTanda(configJuego.contadorDeMuertes())
-		finalPartida.controlNivel(configJuego.nivelActual())
+		}
+			game.sound("ExplosionNave.wav").play()
+			configJuego.nivelActual().sumarPuntaje()
+			configJuego.sumarMuerte()		
+			configJuego.nivelActual().segundaTanda(configJuego.contadorDeMuertes())
+			finalPartida.controlNivel(configJuego.nivelActual())
 		}
 		 
 	}

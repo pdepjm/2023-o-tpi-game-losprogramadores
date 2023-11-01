@@ -167,7 +167,6 @@ object nivel2 {
 		const naveEnemiga30 = new NaveEnemiga(position = game.at(1,7), anterior = game.at(1,7),id = 30, atacante = false)
 		const naveEnemiga31 = new NaveEnemiga(position = game.at(7,7), anterior = game.at(7,7), id = 31,atacante = false)
 		
-		//game.schedule(6000,)
 		game.addVisual(naveEnemiga30)
 		game.addVisual(naveEnemiga31)
 		naveEnemiga30.colisionables()
@@ -358,6 +357,9 @@ object vidas{
 	method chocarseConNave(){
 		naveActual.rebotar()
 	}
+	method recibirDisparo(_){
+		
+	}
 	
 }
 
@@ -376,6 +378,11 @@ object numeroVida{
 	method chocarseConNave(){
 		naveActual.rebotar()
 	}
+	method recibirDisparo(_){
+		
+	}
+	
+	
 	
 }
 object puntajes{
