@@ -34,7 +34,8 @@ object configJuego {
 		
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(-1,n)))}		
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,-1)))}
-		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,9)))}	
+		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(n,8)))}	
+		game.addVisual(new ParedInvisible(position= game.at(7,8)))
 		(0..9).forEach{n => game.addVisual(new ParedInvisible(position= game.at(9,n)))}	
 		
 		game.onCollideDo(naveActual,{chocado => chocado.chocarseConNave()})
@@ -109,15 +110,8 @@ object configJuego {
 	}
 	
 	
-	method configTeclasJuego(){
-		keyboard.up().onPressDo({naveActual.arriba()})
-		keyboard.down().onPressDo({naveActual.abajo()})
-		keyboard.right().onPressDo({naveActual.derecha()})
-		keyboard.left().onPressDo({naveActual.izquierda()})
-		keyboard.space().onPressDo({naveActual.disparar()})
-	}
 	
-}
+} 
 
 
 
@@ -300,7 +294,7 @@ object puntajeFinal{
 
 object numeroPuntajeFinal{
 	
-	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
+	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1100.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
 	
 	const position = game.at(5,3)
 
@@ -318,16 +312,16 @@ object gameOver{
 	method image()= image
 	
 }
-
+/* 
 object pressSpaceToContinue{
 	
-	var property position = game.at(3, 1)
+	var property position = game.at(3, 3)
 	var property image = "pressSpaceToContinue.png"
 	
 	method position() = position
 	method image()= image
 		
-}
+}*/
 
 object finalPartida{
 	
@@ -342,12 +336,11 @@ object finalPartida{
 		configJuego.contadorDeMuertes(0)
 		game.clear()
 		game.addVisual(youWin)
+		//game.addVisual(pressSpaceToContinue)
+		game.schedule(2000,{configJuego.menuGeneral()})
 		game.addVisual(puntajeFinal)
 		game.addVisual(numeroPuntajeFinal)
-		//game.schedule(2000,{self.volverAMenu()})
-		game.schedule(4000,{configJuego.menuGeneral()})
-		/*game.addVisual(pressSpaceToContinue)
-		keyboard.space().onPressDo({
+		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})*/
 		
@@ -357,13 +350,14 @@ object finalPartida{
 		game.clear()
 		game.addVisual(gameOver)
 		//game.addVisual(pressSpaceToContinue)
+		game.schedule(2000,{configJuego.menuGeneral()})
 		game.addVisual(puntajeFinal)
 		game.addVisual(numeroPuntajeFinal)
-		game.schedule(4000,{configJuego.menuGeneral()})
 		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})
 		*/
+
 	}
 }
 
