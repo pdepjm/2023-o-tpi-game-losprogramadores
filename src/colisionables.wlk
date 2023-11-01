@@ -12,7 +12,7 @@ class ParedInvisible {
 	
 	method position() = position 
 	
-	method image() = "0.png"
+	method image() = "limite.png"
 	 // cambiar a chocarse con limite, poner un schedule para que luego de un cierto tiempo se haga un deleteVisual(bala)
 	 // poner metodo en bala para que no de error
 	method chocarseConNave(){
@@ -152,6 +152,7 @@ class NaveEnemiga{
 			
 		configJuego.nivelActual().sumarPuntaje()
 		configJuego.sumarMuerte()		
+		configJuego.nivelActual().segundaTanda(configJuego.contadorDeMuertes())
 		finalPartida.controlNivel(configJuego.nivelActual())
 		}
 		 
