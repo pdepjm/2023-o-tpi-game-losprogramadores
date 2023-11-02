@@ -31,8 +31,13 @@
 
 ## Reglas
 
+- El objetivo principal es destruir todas las naves enemigas.
+- Se gana el nivel al eliminar todas las naves enemigas.
+- Cada jugador inicia con un número determinado de vidas.
+- Una bala enemiga que impacte al jugador reduce en 1 la cantidad de vidas.
+- Se pierde el juego si el jugador se queda sin vidas
+
 ## Otros
 
 - Paradigmas De Programacion - Curso k2004 - UTN-FRBA
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- Versión de wollok: 3.2.0
