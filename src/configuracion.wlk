@@ -72,6 +72,8 @@ object configJuego {
 		self.addVisuals()
 		game.addVisual(instrucciones)
 		game.addVisual(exitInstrucciones)
+		//game.addVisual(flechita)
+		//flechita.position(game.at(2,5)) 
 		
 		keyboard.enter().onPressDo({flechita.seleccionarOpcionInstrucciones()})
 		
@@ -93,6 +95,7 @@ object configJuego {
 	
 	method addVisuals(){		
 		game.addVisual(flechita)
+		flechita.position(game.at(2,5))
 		keyboard.down().onPressDo({flechita.cambiarPosicion()})
 		keyboard.up().onPressDo({flechita.cambiarPosicionUp()})
 	}
@@ -176,8 +179,8 @@ class SelectLevel{
 }
 
 object instrucciones{
-	var property position = game.at(3,4)
-	var property image = "instrucciones.png"
+	var property position = game.at(1,2)
+	var property image = "instruccionesNuevas.jpeg"
 	
 	method position() = position
 	method image()= image
@@ -346,10 +349,14 @@ object finalPartida{
 		game.clear()
 		game.addVisual(youWin)
 		//game.addVisual(pressSpaceToContinue)
-		game.schedule(2000,{configJuego.menuGeneral()})
 		game.addVisual(puntajeFinal)
 		game.addVisual(numeroPuntajeFinal)
 		game.sound("youWin.wav").play()
+		game.schedule(3000,{
+			configJuego.menuGeneral()
+		}
+			
+		)
 		/*keyboard.space().onPressDo({
 			configJuego.menuGeneral()
 		})*/
