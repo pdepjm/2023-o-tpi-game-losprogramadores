@@ -45,7 +45,7 @@ object configJuego {
 	
 	method portadaIncio(){
 		
-		game.addVisual(portada)
+		game.addVisual(portada1)
 		
 		keyboard.space().onPressDo({
 			self.menuGeneral()
@@ -60,7 +60,7 @@ object configJuego {
 		game.addVisual(opcion1)
 		game.addVisual(opcion2)
 		game.addVisual(opcion3)
-		game.addVisual(titulo)
+		game.addVisual(titulo1)
 		
 		keyboard.enter().onPressDo({flechita.seleccionarOpcionMenu()})
 		
@@ -70,8 +70,8 @@ object configJuego {
 		
 		self.removeVisuals()
 		self.addVisuals()
-		game.addVisual(instrucciones)
-		game.addVisual(exitInstrucciones)
+		game.addVisual(instrucciones1)
+		game.addVisual(exitInstrucciones1)
 		//game.addVisual(flechita)
 		//flechita.position(game.at(2,5)) 
 		
@@ -84,7 +84,7 @@ object configJuego {
 		
 			self.removeVisuals()
 			self.addVisuals()
-			game.addVisual(titulo)
+			game.addVisual(titulo1)
 			game.addVisual(self.level1())
 			game.addVisual(self.level2())
 			game.addVisual(self.level3())
@@ -115,10 +115,7 @@ object configJuego {
 	}
 	
 	
-	
 } 
-
-
 
 object opcion1{
 	
@@ -178,6 +175,23 @@ class SelectLevel{
 	
 }
 
+class ObjetosVisuales{
+	
+	var property position 
+	var property image 
+	
+	method position() = position
+	method image()= image
+}
+
+const instrucciones1 = new ObjetosVisuales(position=game.at(1,2),image="instruccionesNuevas.jpeg")
+const titulo1 = new ObjetosVisuales(position=game.at(1,6),image="operacionOrbita.png")
+const exitInstrucciones1 = new ObjetosVisuales(position=game.at(3,5),image="exit.png")
+const portada1 = new ObjetosVisuales(position=game.at(2,2),image="portada.png")
+const youWin1 = new ObjetosVisuales(position=game.at(1,4),image="youWin.png")
+const puntajeFinal1 = new ObjetosVisuales(position=game.at(2,3),image="puntaje.png") 
+const gameOver1 = new ObjetosVisuales(position=game.at(1,4),image=" gameOver.png")
+
 object instrucciones{
 	var property position = game.at(1,2)
 	var property image = "instruccionesNuevas.jpeg"
@@ -187,15 +201,6 @@ object instrucciones{
 	
 	
 }
-
-object titulo{
-	const  position = game.at(1,6)
-	const  image = "operacionOrbita.png"
-	
-	method position() = position
-	method image()= image
-}
-
 
 object exitInstrucciones{
 	var property position = game.at(3,5)
@@ -275,35 +280,6 @@ object flechita{
 
 }
 
-object portada{
-	
-	var property position = game.at(2,2)
-	var property image = "portada.png"
-	
-	method position() = position
-	method image()= image
-	
-}
-
-object youWin{
-	
-	var property position = game.at(1,4)
-	var property image = "youWin.png"
-	
-	method position() = position
-	method image()= image
-	
-	
-}
-
-object puntajeFinal{
-	var property position = game.at(2,3)
-	var property image = "puntaje.png"
-	
-	method position() = position
-	method image()= image
-}
-
 object numeroPuntajeFinal{
 	
 	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1100.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
@@ -315,25 +291,6 @@ object numeroPuntajeFinal{
 	
 }
 
-object gameOver{
-	
-	var property position = game.at(1,4)
-	var property image = "gameOver.png"
-	
-	method position() = position
-	method image()= image
-	
-}
-/* 
-object pressSpaceToContinue{
-	
-	var property position = game.at(3, 3)
-	var property image = "pressSpaceToContinue.png"
-	
-	method position() = position
-	method image()= image
-		
-}*/
 
 object finalPartida{
 	
@@ -347,9 +304,9 @@ object finalPartida{
 	method ganar(){
 		configJuego.contadorDeMuertes(0)
 		game.clear()
-		game.addVisual(youWin)
+		game.addVisual(youWin1)
 		//game.addVisual(pressSpaceToContinue)
-		game.addVisual(puntajeFinal)
+		game.addVisual(puntajeFinal1)
 		game.addVisual(numeroPuntajeFinal)
 		game.sound("youWin.wav").play()
 		game.schedule(3000,{
@@ -365,10 +322,10 @@ object finalPartida{
 	
 	method perder(){
 		game.clear()
-		game.addVisual(gameOver)
+		game.addVisual(gameOver1)
 		//game.addVisual(pressSpaceToContinue)
 		game.schedule(2000,{configJuego.menuGeneral()})
-		game.addVisual(puntajeFinal)
+		game.addVisual(puntajeFinal1)
 		game.addVisual(numeroPuntajeFinal)
 		game.sound("gameOver.wav").play()
 		/*keyboard.space().onPressDo({

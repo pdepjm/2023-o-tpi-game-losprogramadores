@@ -410,7 +410,7 @@ object puntajes{
 
 object numeroPuntaje{
 	
-	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
+	const listaNumeros = ["0.png","100.png","200.png","300.png","400.png","500.png","600.png","700.png","800.png","900.png","1000.png","1100.png","1200.png","1300.png","1400.png","1500.png","1600.png","1700.png","1800.png"]
 	
 	const position = game.at(8,8)
 	
