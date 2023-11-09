@@ -189,7 +189,7 @@ const exitInstrucciones1 = new ObjetosVisuales(position=game.at(3,5),image="exit
 const portada1 = new ObjetosVisuales(position=game.at(2,2),image="portada.png")
 const youWin1 = new ObjetosVisuales(position=game.at(1,4),image="youWin.png")
 const puntajeFinal1 = new ObjetosVisuales(position=game.at(2,3),image="puntaje.png") 
-const gameOver1 = new ObjetosVisuales(position=game.at(1,4),image=" gameOver.png")
+const gameOver1 = new ObjetosVisuales(position=game.at(1,4),image="gameOver.png")
 
 object instrucciones{
 	var property position = game.at(1,2)
