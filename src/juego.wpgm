@@ -1,8 +1,11 @@
 import wollok.game.*
-import pepita.*
+import nave.*
+import configuracion.*
+import colisionables.*
 
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
-	game.start()
+	
+	configJuego.iniciar()
+	
 }
+	
