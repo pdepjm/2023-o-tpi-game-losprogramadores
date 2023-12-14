@@ -5,7 +5,7 @@
 - Gregorio Ondijan
 - Franco Zelione
 - Ramiro Villani
-- Estaban Palmisano
+- Esteban Palmisano
 
 ## Capturas
 
